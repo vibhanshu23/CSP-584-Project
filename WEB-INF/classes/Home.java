@@ -23,9 +23,9 @@ public class Home extends HttpServlet {
 		Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
-		//utility.printHtml("Content.html");
-		RequestDispatcher rd=request.getRequestDispatcher("DealMatchesUtilities");
-		rd.include(request,response);
+		utility.printHtml("Content.html");
+		// RequestDispatcher rd=request.getRequestDispatcher("DealMatchesUtilities");
+		// rd.include(request,response);
 		utility.printHtml("Footer.html");
 				
 	}

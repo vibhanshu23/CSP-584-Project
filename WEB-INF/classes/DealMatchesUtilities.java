@@ -44,7 +44,7 @@ public class DealMatchesUtilities extends HttpServlet {
 			{		
 				
 				
-			BufferedReader reader = new BufferedReader(new FileReader (new File(TOMCAT_HOME+"\\webapps\\Tutorial_7\\DealMatches.txt")));
+			BufferedReader reader = new BufferedReader(new FileReader (new File(TOMCAT_HOME+"/webapps/Project/DealMatches.txt")));
 			line=reader.readLine().toLowerCase();
 //		
 

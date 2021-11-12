@@ -14,7 +14,7 @@ public class ProductRecommenderUtility{
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exampledatabase","root","root");							
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exampledatabase","root","root1234");							
 			message="Successfull";
 			return message;
 		}
@@ -39,7 +39,7 @@ public class ProductRecommenderUtility{
 		HashMap<String,String> prodRecmMap = new HashMap<String,String>();
 		try {
 
-            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"\\webapps\\Tutorial_7\\matrixFactorizationBasedRecommendations.csv")));
+            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"/webapps/Project/matrixFactorizationBasedRecommendations.csv")));
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator

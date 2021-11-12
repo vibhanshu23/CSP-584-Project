@@ -19,6 +19,7 @@ h1,h2,h3 {
 
 h1 {
 	font-size: 40px !important;
+	color: #DE3163 !important;
 }
 
 h2 {
@@ -272,7 +273,7 @@ hr {
 	margin-bottom: 20px;
 	padding: 10px 0px 10px 0px;
 	border-radius: 5px;
-	background: #D7DF01;
+	background: #40E0D0;
 	
 }
 

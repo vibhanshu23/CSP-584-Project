@@ -52,7 +52,7 @@ public class ConsoleList extends HttpServlet {
 					 
 				 }
 			 }
-				name = "Microsoft";
+				name = "Route 1";
 		   }
 		   else if(CategoryName.equals("sony"))
 		    {
@@ -63,7 +63,7 @@ public class ConsoleList extends HttpServlet {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-				 name = "Sony";
+				 name = "Route 2";
 			}
 			else if(CategoryName.equals("nintendo"))
 			{
@@ -74,7 +74,7 @@ public class ConsoleList extends HttpServlet {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-			   	 name = "Nintendo";
+			   	 name = "Route 3";
 			}
 		}
 		
@@ -88,7 +88,7 @@ public class ConsoleList extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" Consoles</a>");
+		pw.print("<a style='font-size: 24px;'>CTA "+name+" Bus</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
 		for(Map.Entry<String, Console> entry : hm.entrySet())

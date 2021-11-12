@@ -53,7 +53,7 @@ public class GamesList extends HttpServlet {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-			name = "ElectronicArts";
+			name = "Blue Line";
 		  }
 		  else if(CategoryName.equals("activision"))
 		  {
@@ -64,7 +64,7 @@ public class GamesList extends HttpServlet {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}	
-			name = "Activision";
+			name = "Red Line";
 		  }
 		  else if(CategoryName.equals("takeTwoInteractive"))
 		  {
@@ -75,7 +75,7 @@ public class GamesList extends HttpServlet {
 					 hm.put(entry.getValue().getId(),entry.getValue());
 				 }
 				}
-			name = "TakeTwoInteractive";
+			name = "Brown Line";
 		  }
 		}
 
@@ -89,7 +89,7 @@ public class GamesList extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>"+name+" Games</a>");
+		pw.print("<a style='font-size: 24px;'>CTA "+name+" Trains</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		int i = 1; int size= hm.size();
 		for(Map.Entry<String, Game> entry : hm.entrySet()){
