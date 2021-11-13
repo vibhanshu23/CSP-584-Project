@@ -154,12 +154,12 @@ hr {
 
 #content {
 	float: right;
-	width: 750px;
+	width: 1000px;
 }
 
 /* Products Display on the Main Content Screen */
 .post {
-	width: 750px;
+	width: 1000px;
 	margin-bottom: 20px;
 	padding: 20px 0px;
 	background: #FFFFFF;

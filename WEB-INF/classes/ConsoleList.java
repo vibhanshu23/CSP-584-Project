@@ -87,7 +87,7 @@ public class ConsoleList extends HttpServlet {
 
 		Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
-		utility.printHtml("LeftNavigationBar.html");
+		// utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>CTA "+name+" Bus</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
@@ -117,7 +117,7 @@ public class ConsoleList extends HttpServlet {
 					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
-			pw.print("<li><form method='post' action='ShowRoutes'>" +
+			pw.print("<li><form method='post' action='DetailMap'>" +
 			"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
 			"<input type='submit' class='btnbuy' value='Show Routes'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+

@@ -57,9 +57,9 @@ public class Utilities extends HttpServlet{
 				username = Character.toUpperCase(username.charAt(0)) + username.substring(1);
 				if(session.getAttribute("usertype").equals("manager"))
 				{
-					result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>Addproduct</span></a></li>"
-						+ "<li><a href='ProductModify?button=Updateproduct'><span class='glyphicon'>Updateproduct</span></a></li>"
-						+"<li><a href='ProductModify?button=Deleteproduct'><span class='glyphicon'>Deleteproduct</span></a></li>"
+					result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>AddRoute</span></a></li>"
+						+ "<li><a href='ProductModify?button=Updateproduct'><span class='glyphicon'>UpdateRoute</span></a></li>"
+						+"<li><a href='ProductModify?button=Deleteproduct'><span class='glyphicon'>DeleteRoute</span></a></li>"
 						+"<li><a href='DataVisualization'><span class='glyphicon'>Trending</span></a></li>"
 						+"<li><a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a></li>"
 						+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"

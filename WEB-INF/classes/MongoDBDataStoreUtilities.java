@@ -305,4 +305,38 @@ public class MongoDBDataStoreUtilities {
 
 	}
 
+	public static ArrayList<CTABusObject> getStopsForRouteNumber(String routeString) {
+		ArrayList<CTABusObject> arrCTABus = new ArrayList<CTABusObject>();
+		try {
+
+			getConnection();
+
+			BasicDBObject whereQuery = new BasicDBObject();
+			whereQuery.put("routeNumber", routeString);
+			DBCursor cursor = myCTABus.find(whereQuery);
+			while(cursor.hasNext()) {
+				BasicDBObject obj = (BasicDBObject) cursor.next();
+				String id = obj.get("_id").toString();
+				String routeNumber = obj.get("routeNumber").toString();
+				String routeColour = obj.get("routeColour").toString();
+				String routeName = obj.get("routeName").toString();
+				String busRouteDirection = obj.get("busRouteDirection").toString();
+				String stopId = obj.get("stopId").toString();
+				String stopName = obj.get("stopName").toString();
+				String stoplat = obj.get("stoplat").toString();
+				String stoplon = obj.get("stoplon").toString();
+				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+				arrCTABus.add(CTA);
+			}
+			System.out.println("---------------------------");
+			// System.out.println(arrCTABus);
+
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return arrCTABus;
+
+	}
+
 }
