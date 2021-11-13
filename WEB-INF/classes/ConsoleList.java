@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -90,30 +91,44 @@ public class ConsoleList extends HttpServlet {
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>CTA "+name+" Bus</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
-		int i = 1; int size= hm.size();
-		for(Map.Entry<String, Console> entry : hm.entrySet())
-		{
-			Console console = entry.getValue();
+		ArrayList <CTABusObject> arrCTABus = MongoDBDataStoreUtilities.getDistinctRoutes();
+		int i = 1; int size= arrCTABus.size();
+
+		for(CTABusObject obj:arrCTABus){
+		
+
+		// }
+		// for(Map.Entry<String, Console> entry : hm.entrySet())
+		// {
+			// Console console = entry.getValue();
 			if(i%3==1) pw.print("<tr>");
 			pw.print("<td><div id='shop_item'>");
-			pw.print("<h3>"+console.getName()+"</h3>");
-			pw.print("<strong>$"+console.getPrice()+"</strong><ul>");
-			pw.print("<li id='item'><img src='images/consoles/"+console.getImage()+"' alt='' /></li>");
+			pw.print("<h3>"+"   "+obj.getrouteNumber()+"   </h3>");
+			pw.print("<strong>"+obj.getrouteName()+"</strong><ul>");
+			pw.print("<li id='item'><img src='images/consoles/consoles.png' alt='' /></li>");
+			// if(i%2==1)pw.print("<h3>"+"   $"+"4.00"+"   </h3>");
+			// else if(i%5==1)pw.print("<h3>"+"   $"+"2.00"+"   </h3>");
+			// else if(i%7==1)pw.print("<h3>"+"   $"+"7.00"+"   </h3>");
+			// else 
+			pw.print("<h3>"+"   $"+"5.00"+"   </h3>");
 			pw.print("<li><form method='post' action='Cart'>" +
-					"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+					"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
-					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
-					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
-			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+					"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
+			pw.print("<li><form method='post' action='ShowRoutes'>" +
+			"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
+			"<input type='submit' class='btnbuy' value='Show Routes'></form></li>");
+			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-					"<input type='hidden' name='price' value='"+console.getPrice()+"'>"+
+					"<input type='hidden' name='price' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
+			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
-					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 			pw.print("</ul></div></td>");
