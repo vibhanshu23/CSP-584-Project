@@ -219,21 +219,25 @@ public class Utilities extends HttpServlet{
 			OrdersHashMap.orders.put(username(), arr);
 		}
 		ArrayList<OrderItem> orderItems = OrdersHashMap.orders.get(username());
-		HashMap<String,Console> allconsoles = new HashMap<String,Console> ();
+		// HashMap<String,Console> allconsoles = new HashMap<String,Console> ();
+		HashMap<String,CTABusObject> allctaBusRoutes = new HashMap<String,CTABusObject> ();
 			HashMap<String,Tablet> alltablets = new HashMap<String,Tablet> ();
 			HashMap<String,Game> allgames = new HashMap<String,Game> ();
 			HashMap<String,Accessory> allaccessories=new HashMap<String,Accessory>();
 		if(type.equals("consoles")){
-			Console console;
+			CTABusObject console;
 			try{
-			allconsoles = MySqlDataStoreUtilities.getConsoles();
+			// allconsoles = MySqlDataStoreUtilities.getConsoles();
+			allctaBusRoutes = MongoDBDataStoreUtilities.getDistinctRoutesHashmap();
 			
 			}
 			catch(Exception e){
 				
 			}
-			console = allconsoles.get(name);
-			OrderItem orderitem = new OrderItem(console.getName(), console.getPrice(), console.getImage(), console.getRetailer());
+			// console = allconsoles.get(name);
+			console = allctaBusRoutes.get(name);
+			
+			OrderItem orderitem = new OrderItem(console.getrouteName(), 5, "consoles", console.getrouteName());
 			orderItems.add(orderitem);
 		}
 		if(type.equals("games")){
