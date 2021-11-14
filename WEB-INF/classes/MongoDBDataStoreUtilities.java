@@ -20,7 +20,7 @@ public class MongoDBDataStoreUtilities {
 		DB db = mongo.getDB("CustomerReviews");
 		myReviews = db.getCollection("myReviews");
 
-		DB db2 = mongo.getDB("myReviews");
+		DB db2 = mongo.getDB("CTABusData");
 		myCTABus = db2.getCollection("CTABus");
 		myCTABusRoutes = db2.getCollection("CTABusRoutes");
 
@@ -310,26 +310,41 @@ public class MongoDBDataStoreUtilities {
 		try {
 
 			getConnection();
-
 			BasicDBObject whereQuery = new BasicDBObject();
 			whereQuery.put("routeNumber", routeString);
+			var stringDir = "";
+			Iterator<String> files = myCTABus.distinct("busRouteDirection",whereQuery).iterator();
+			while(files.hasNext()) {
+				stringDir = files.next();
+
+			}
+
+		
 			DBCursor cursor = myCTABus.find(whereQuery);
 			while(cursor.hasNext()) {
 				BasicDBObject obj = (BasicDBObject) cursor.next();
-				String id = obj.get("_id").toString();
-				String routeNumber = obj.get("routeNumber").toString();
-				String routeColour = obj.get("routeColour").toString();
-				String routeName = obj.get("routeName").toString();
 				String busRouteDirection = obj.get("busRouteDirection").toString();
-				String stopId = obj.get("stopId").toString();
-				String stopName = obj.get("stopName").toString();
-				String stoplat = obj.get("stoplat").toString();
-				String stoplon = obj.get("stoplon").toString();
-				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
-				arrCTABus.add(CTA);
+
+				if (stringDir.equals(busRouteDirection)){
+					String id = obj.get("_id").toString();
+					String routeNumber = obj.get("routeNumber").toString();
+					String routeColour = obj.get("routeColour").toString();
+					String routeName = obj.get("routeName").toString();
+					String stopId = obj.get("stopId").toString();
+					String stopName = obj.get("stopName").toString();
+					String stoplat = obj.get("stoplat").toString();
+					String stoplon = obj.get("stoplon").toString();
+					CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+					arrCTABus.add(CTA);
+				}
+				
 			}
 			System.out.println("---------------------------");
-			// System.out.println(arrCTABus);
+			System.out.println("---------------------------");
+			System.out.println("---------------------------");
+			System.out.println("---------------------------");
+			System.out.println("---------------------------");
+			System.out.println(arrCTABus);
 
 			
 		} catch (Exception e) {

@@ -26,7 +26,7 @@ from pymongo import MongoClient
 #pprint(serverStatusResult)
 
 client = MongoClient(port=27017)
-db=client.myReviews
+db=client.CTABusData
 #myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 #mydb = myclient["myReviews"]
 mycol = db.CTABus
