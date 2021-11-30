@@ -85,12 +85,14 @@ public class DetailMap extends HttpServlet {
                 + "<div class='entry'>");
             
         // pw.print("<h3><button id='btnGetChartData'>View Chart</h3>");
-        pw.println("<div id='map' style='width: 800px; height: 600px;'>");
+        pw.println("<div id='map' style='width: 500px; height: 400px;'>");
         pw.println("</div></div></div></div>");
         pw.println("<script type='text/javascript'>");
+        // pw.println("console.log('"+reviewJson+"')");
         pw.println("function createDataTable() {");
-            pw.println("var parsedData = $.parseJSON('"+reviewJson+"');");
-            // pw.println("console.log('our json data',parsedData);");
+        // response.setContentType("application/JSON");
+        //     response.setCharacterEncoding("UTF-8");
+            pw.println("var parsedData = $.parseJSON('"+reviewJson+"'');");
             // pw.println("var locations = [");
             // pw.println("['Bondi Beach', -33.890542, 151.274856, 4],");
             // pw.println("['Coogee Beach', -33.923036, 151.259052, 5],");
@@ -100,11 +102,11 @@ public class DetailMap extends HttpServlet {
             //   pw.println("];");
             //   pw.println("for(i=0; i < parsedData.length;i++)");
             //   pw.println("{");
-            //     pw.println("locations.push([parsedData[i].stopName, parsedData[i].stoplat, parsedData[i].stoplon, (i+1).toString()]);");
+            //     pw.println("locations.push([parsedData[i].stopName, Double.parseDouble(parsedData[i].stoplat), Double.parseDouble(parsedData[i].stoplon), i+1]);");
             //     pw.println("}");
                 pw.println("var map = new google.maps.Map(document.getElementById('map'), {");
-                    pw.println("zoom: 13,");
-                    pw.println("center: new google.maps.LatLng(41.8404139,-87.6186116),");
+                    pw.println("zoom: 10,");
+                    pw.println("center: new google.maps.LatLng(-33.92, 151.25),");
                     pw.println("mapTypeId: google.maps.MapTypeId.ROADMAP");
                     pw.println(" });");
           
@@ -114,7 +116,7 @@ public class DetailMap extends HttpServlet {
           
                     pw.println("for (i = 0; i < parsedData.length; i++) {");
                         pw.println("marker = new google.maps.Marker({");
-                            pw.println("position: new google.maps.LatLng(parseFloat(parsedData[i].stoplat), parseFloat(parsedData[i].stoplon)),");
+                            pw.println("position: new google.maps.LatLng(Double.parseDouble(parsedData[i].stoplat), Double.parseDouble(parsedData[i].stoplon)),");
                             pw.println("map: map");
                             pw.println("});");
           
@@ -131,9 +133,9 @@ public class DetailMap extends HttpServlet {
         
         utility.printHtml("Footer.html");
 
-            // response.setContentType("application/JSON");
-            // response.setCharacterEncoding("UTF-8");
-            // response.getWriter().write(reviewJson);
+            response.setContentType("application/JSON");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(reviewJson);
 
         } catch (Exception ex) {
             

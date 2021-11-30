@@ -6,6 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.*;  
+import java.net.*;
+import java.util.*;
+import java.io.*;
+// import org.json.*;
+import org.json.simple.*;
+import org.json.simple.JSONObject;
+
+
 
 @WebServlet("/Home")
 
@@ -27,7 +35,11 @@ public class Home extends HttpServlet {
 		// RequestDispatcher rd=request.getRequestDispatcher("DealMatchesUtilities");
 		// rd.include(request,response);
 		utility.printHtml("Footer.html");
+		WebHandler.getAPIForCTATrainStops();
 				
 	}
-
+    
 }
+
+
+		

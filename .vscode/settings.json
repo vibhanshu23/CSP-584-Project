@@ -37,6 +37,7 @@
         "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/tomcat-util-scan.jar",
         "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/tomcat-util.jar",
         "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/tomcat-websocket.jar",
-        "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/websocket-api.jar"
+        "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/websocket-api.jar",
+        "/Users/vibhanshujain/Documents/apache-tomcat-9.0.52/lib/json-simple-1.1.1.jar"
     ]
 }

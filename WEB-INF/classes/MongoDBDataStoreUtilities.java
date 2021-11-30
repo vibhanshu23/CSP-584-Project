@@ -263,8 +263,8 @@ public class MongoDBDataStoreUtilities {
 				// CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
 				// arrCTABus.add(CTA);
 			}
-			System.out.println("---------------------------");
-			System.out.println(arrCTABus);
+			// System.out.println("---------------------------");
+			// System.out.println(arrCTABus);
 
 
 		} catch (Exception e) {
@@ -294,8 +294,8 @@ public class MongoDBDataStoreUtilities {
 				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
 				arrCTABus.put(routeNumber,CTA);
 			}
-			System.out.println("---------------------------");
-			System.out.println(arrCTABus);
+			// System.out.println("---------------------------");
+			// System.out.println(arrCTABus);
 
 
 		} catch (Exception e) {
@@ -339,12 +339,9 @@ public class MongoDBDataStoreUtilities {
 				}
 				
 			}
-			System.out.println("---------------------------");
-			System.out.println("---------------------------");
-			System.out.println("---------------------------");
-			System.out.println("---------------------------");
-			System.out.println("---------------------------");
-			System.out.println(arrCTABus);
+			
+			// System.out.println("---------------------------");
+			// System.out.println(arrCTABus);
 
 			
 		} catch (Exception e) {
