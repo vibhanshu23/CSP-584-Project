@@ -1,13 +1,10 @@
 
-package com.example;
 
 import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
-public class Location {
+public class CTALocationChild {
 
     @SerializedName("type")
     @Expose
@@ -20,7 +17,7 @@ public class Location {
      * No args constructor for use in serialization
      * 
      */
-    public Location() {
+    public CTALocationChild() {
     }
 
     /**
@@ -28,7 +25,7 @@ public class Location {
      * @param coordinates
      * @param type
      */
-    public Location(String type, List<Double> coordinates) {
+    public CTALocationChild(String type, List<Double> coordinates) {
         super();
         this.type = type;
         this.coordinates = coordinates;

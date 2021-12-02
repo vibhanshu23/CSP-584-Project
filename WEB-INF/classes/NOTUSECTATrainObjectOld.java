@@ -3,7 +3,7 @@ import java.util.Map;
 
 
 
-public class CTATrainObjectOld {
+public class NOTUSECTATrainObjectOld {
 
 	private String routeDirection;
 	private String stopId;
@@ -18,7 +18,7 @@ public class CTATrainObjectOld {
 
 	
 
-	public CTATrainObjectOld(String map_id,String routeNumber, String routeColour, String stopDisplayName, String routeDirection,String stopId,String stopName,String stoplat,String stoplon){
+	public NOTUSECTATrainObjectOld(String map_id,String routeNumber, String routeColour, String stopDisplayName, String routeDirection,String stopId,String stopName,String stoplat,String stoplon){
 		this.map_id=map_id;
 		this.routeNumber=routeNumber;
 		this.routeColour=routeColour;
@@ -64,7 +64,7 @@ public class CTATrainObjectOld {
     //     ":@computed_region_43wa_7qmu": "1"
     // }
 
-	public CTATrainObject(){
+	public NOTUSECTATrainObjectOld(){
 		
 	}
 	public String getmap_id() {

@@ -3,6 +3,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,19 +39,28 @@ import com.mongodb.util.JSON;
 */
 
 public class WebHandler extends HttpServlet{
+	public static String userLat;
+	public static String userLong;
+	public static String index;
+	public static String strJsonTrainArrival;
+
+
+	
+	public static ArrayList<CTATrainStopModel> arrTrainStopsCurrentlyInUse;
+
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			response.setContentType("text/html");
 			PrintWriter pw = response.getWriter();
 			
 			Utilities utility = new Utilities(request,pw);
 			
-			
 					
 		}
 	
 	
 	  //ArrayList<HashMap<String,ArrayList>> getAPIForCTATrainStops(){
-		public static void getAPIForCTATrainStops() throws ServletException, IOException {
+		public static ArrayList<CTATrainStopModel> getAPIDataForCTATrainStops() throws ServletException, IOException {
+			ArrayList<CTATrainStopModel> arrObjects = new ArrayList<>();
 
 			try {
 				URL url = new URL("https://data.cityofchicago.org/resource/8mj8-j3c4.json");
@@ -68,32 +78,30 @@ public class WebHandler extends HttpServlet{
 	
 				StringBuilder responseStrBuilder = new StringBuilder();
 				
-				ArrayList<CTATrainObject> arrObjects = new ArrayList<>();
 
 				while((line =  bR.readLine()) != null){
 					
 					String temp = "";
 
-					if(line.charAt(0) == '['){
-						temp = line.substring(1);
-					}
-					else if(line.charAt(line.length()-1) == ']'){
-						temp = line.substring(1, line.length()-2);
-					}
-					else if(line.charAt(0) == ','){
-						temp = line.substring(1);
-					}
+					// if(line.charAt(0) == '['){
+					// 	temp = line.substring(1);
+					// }
+					// else if(line.charAt(line.length()-1) == ']'){
+					// 	temp = line.substring(1, line.length()-2);
+					// }
+					// else if(line.charAt(0) == ','){
+					// 	temp = line.substring(1);
+					// }
 					
-					CTATrainObject obj = new CTATrainObject(map_id, routeNumber, routeColour, stopDisplayName, routeDirection, stopId, stopName, stoplat, stoplon)
-					System.out.println("******************************************************************");
-				System.out.println(line);
+					// System.out.println("******************************************************************");
+					// System.out.println(line);
 					responseStrBuilder.append(line);
 
 				}
+				Gson gson = new Gson();
+				arrObjects.addAll(Arrays.asList(gson.fromJson(responseStrBuilder.toString(), CTATrainStopModel[].class)));
 				inputStream.close();
 	
-				String txt = responseStrBuilder.toString();  
-
 				
 
 // 				JSONArray test = JSON.parse(txt);
@@ -107,12 +115,13 @@ public class WebHandler extends HttpServlet{
 				// ArrayList reviewJson = new Gson().toJson(txt);
 	
 				// Finally we have the response
-				// System.out.println("******************************************************************");
-				// System.out.println(txt);
+				System.out.println("******************************************************************");
+				System.out.println(arrObjects.size());
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 
+			return arrObjects;
 
 		}
 }
