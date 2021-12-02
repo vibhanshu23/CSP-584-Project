@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ConsoleList")
+@WebServlet("/CTABusList")
 
-public class ConsoleList extends HttpServlet {
+public class CTABusList extends HttpServlet {
 
 	/* Console Page Displays all the Consoles and their Information in Game Speed */
 
@@ -112,21 +112,21 @@ public class ConsoleList extends HttpServlet {
 			// else 
 			pw.print("<h3>"+"   $"+"5.00"+"   </h3>");
 			pw.print("<li><form method='post' action='Cart'>" +
-					"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
+					"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
 					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 					"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
-			pw.print("<li><form method='post' action='DetailMap'>" +
-			"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
+			pw.print("<li><form method='get' action='DetailMap'>" +
+			"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
 			"<input type='submit' class='btnbuy' value='Show Routes'></form></li>");
-			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+obj.getrouteNumber()+"'>"+
+			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='price' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+obj.getrouteName()+"'>"+
+			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='rt' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='type' value='consoles'>"+
 					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
 					"<input type='hidden' name='access' value=''>"+

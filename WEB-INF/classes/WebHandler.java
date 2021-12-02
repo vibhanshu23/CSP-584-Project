@@ -42,6 +42,10 @@ public class WebHandler extends HttpServlet{
 	public static String userLat;
 	public static String userLong;
 	public static String index;
+
+	public static String currentBusRouteNumber;
+
+
 	public static String strJsonTrainArrival;
 
 
