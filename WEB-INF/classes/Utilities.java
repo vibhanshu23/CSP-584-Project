@@ -57,9 +57,12 @@ public class Utilities extends HttpServlet{
 				username = Character.toUpperCase(username.charAt(0)) + username.substring(1);
 				if(session.getAttribute("usertype").equals("manager"))
 				{
-					result = result + "<li><a href='ProductModify?button=Addproduct'><span class='glyphicon'>AddRoute</span></a></li>"
-						+ "<li><a href='ProductModify?button=Updateproduct'><span class='glyphicon'>UpdateRoute</span></a></li>"
-						+"<li><a href='ProductModify?button=Deleteproduct'><span class='glyphicon'>DeleteRoute</span></a></li>"
+					result = result + "<li><a href='ProductModify?button=AddBusRoute'><span class='glyphicon'>AddBusRoute</span></a></li>"
+						+ "<li><a href='ProductModify?button=AddBusStop'><span class='glyphicon'>AddBusStop</span></a></li>"
+						+ "<li><a href='ProductModify?button=UpdateBusRoute'><span class='glyphicon'>UpdateBusRoute</span></a></li>"
+						+ "<li><a href='ProductModify?button=UpdateBusStop'><span class='glyphicon'>UpdateBusStop</span></a></li>"
+						+"<li><a href='ProductModify?button=DeleteBusRoute'><span class='glyphicon'>DeleteBusRoute</span></a></li>"
+						+"<li><a href='ProductModify?button=DeleteBusStop'><span class='glyphicon'>DeleteBusStop</span></a></li>"
 						+"<li><a href='DataVisualization'><span class='glyphicon'>Trending</span></a></li>"
 						+"<li><a href='DataAnalytics'><span class='glyphicon'>DataAnalytics</span></a></li>"
 						+ "<li><a><span class='glyphicon'>Hello,"+username+"</span></a></li>"

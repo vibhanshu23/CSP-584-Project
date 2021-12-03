@@ -42,7 +42,7 @@ hr {
 /* Header Content of the Website*/
 
 #header {
-	width: 1000px;
+	width: 1400px;
 	height: 60px;
 	margin: 0 auto;
 	padding: 0px;
@@ -50,7 +50,7 @@ hr {
 
 /* Game Speed LOGO Decoration */
 #logo {
-	width: 1000px;
+	width: 1400px;
 	height: 110px;
 	margin: 0 auto;
 	padding: 30px 20px 0px 20px;
@@ -145,7 +145,7 @@ hr {
 /* Page Display Decoration*/
 
 #page {
-	width: 1000px;
+	width: 1400px;
 	margin: 0 auto;
 	padding: 20px 20px 0px 20px;
 }
@@ -154,12 +154,12 @@ hr {
 
 #content {
 	float: right;
-	width: 1000px;
+	width: 1400px;
 }
 
 /* Products Display on the Main Content Screen */
 .post {
-	width: 1000px;
+	width: 1400px;
 	margin-bottom: 20px;
 	padding: 20px 0px;
 	background: #FFFFFF;
