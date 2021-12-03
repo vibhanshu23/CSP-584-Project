@@ -26,7 +26,7 @@ public class Cart extends HttpServlet {
 		String maker = request.getParameter("maker");
 		String access = request.getParameter("access");
 		
-
+		
 		/* StoreProduct Function stores the Purchased product in Orders HashMap.*/	
 		utility.storeProduct(name, type, maker, access);
 		displayCart(request, response);

@@ -11,7 +11,10 @@ function init() {
 }
 
 function doCompletion() {
-
+    searchId = document.getElementById("searchId");
+    completeTable = document.getElementById("complete-table");
+    autoRow = document.getElementById("auto-row");
+    console.log("this is searchid" + searchId.value)
     var url = "autocomplete?action=complete&searchId=" + escape(searchId.value);
     req = initRequest();
     req.open("GET", url, true);
@@ -42,6 +45,8 @@ function callback() {
 }
 
 function appendProduct(productName,productId) {
+    completeTable = document.getElementById("complete-table");
+    autoRow = document.getElementById("auto-row");
 
     var row;
     var cell;

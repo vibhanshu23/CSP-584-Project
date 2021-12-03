@@ -19,18 +19,43 @@ from datetime import datetime
 import pyodbc
 from pymongo import MongoClient
 
+import pymysql.cursors
+db_connection = pymysql.connect(host='127.0.0.1',database="exampledatabase", user="root" , passwd="root1234")
+cursor = db_connection.cursor()
+db_connection.commit()
+
+# cursor.execute("DROP TABLE IF EXISTS Routes;")
+# cursor.execute("DROP TABLE IF EXISTS Stops;")
+# db_connection.commit()
+
+# cursor.execute("""CREATE TABLE Routes(
+#                 routeNumber varchar(255),
+#                 routeColour varchar(255),
+#                 routeName varchar(255)
+#                 );""")
+
+# cursor.execute("""CREATE TABLE Stops(
+#                 routeNumber varchar(255),
+#                 routeColour varchar(255),
+#                 routeName varchar(255),
+#                 busRouteDirection varchar(255),
+#                 stopId varchar(255),
+#                 stopName varchar(255),
+#                 stoplat varchar(255),
+                # stoplon varchar(255)
+                # );""")
 
 #
 #
 #serverStatusResult=db.command("serverStatus")
 #pprint(serverStatusResult)
 
-client = MongoClient(port=27017)
-db=client.CTABusData
+# client = MongoClient(port=27017)
+# db=client.CTABusData
 #myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 #mydb = myclient["myReviews"]
-mycol = db.CTABus
-myCTARoutes = db.CTABusRoutes
+# mycol = db.CTABus
+# myCTARoutes = db.CTABusRoutes
 
 #cursor = mycol.find()
 #for record in cursor:
@@ -48,9 +73,11 @@ for value3 in value2:
     routeColour = value3["rtclr"]
     routeName = value3["rtnm"]
     
-    mydict = { "routeNumber": routeNumber, "routeColour": routeColour, "routeName": routeName}
-    x = myCTARoutes.insert_one(mydict)
-    
+    # mydict = { "routeNumber": routeNumber, "routeColour": routeColour, "routeName": routeName}
+    # x = myCTARoutes.insert_one(mydict)
+    cursor.execute("""INSERT INTO Routes (routeNumber,routeColour,routeName) VALUES (%s,%s,%s) """,(routeNumber,routeColour,routeName))
+    db_connection.commit()
+
     response_directions = urlopen("http://www.ctabustracker.com/bustime/api/v2/getdirections?key=zGUVrNRusiVnxcsQt2kMqcBEK&format=json&rt={}".format(routeNumber))
     response_body_directions = response_directions.read()
     directions_json = json.loads(response_body_directions.decode("utf-8"))
@@ -84,10 +111,11 @@ for value3 in value2:
             stoplon = stopDetail["lon"]
 
             print(stoplon)
-
-            mydict = { "routeNumber": routeNumber, "routeColour": routeColour, "routeName": routeName, "busRouteDirection": busRouteDirection, "stopId": stopId, "stopName": stopName, "stoplat": stoplat,"stoplon":stoplon}
-            x = mycol.insert_one(mydict)
-            print(x)
+            cursor.execute("""INSERT INTO Stops (routeNumber,routeColour,routeName,busRouteDirection,stopId,stopName,stoplat,stoplon) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) """,(routeNumber,  routeColour, routeName,  busRouteDirection, stopId, stopName,  stoplat, stoplon))
+            db_connection.commit()
+# mydict = { }
+            # x = mycol.insert_one(mydict)
+            # print(x)
 #            counter = counter + 1
 
 #print(counter)

@@ -41,7 +41,7 @@ public class CTAUIViewTrainLinesOnMap extends HttpServlet {
 			pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 			pw.print("<a style='font-size: 24px;'>CTA Train - "+RouteName+ "Line</a>");
 			pw.print("</h2><div class='entry'><table id='bestseller'>");
-			pw.println("<script type='text/javascript' src='DetailMapStops.js'></script>");
+			pw.println("<script type='text/javascript' src='DetailMapArrival.js'></script>");
 			pw.println("<div id='map' style='width: 900px; height: 900px;'>");
 			pw.println("</div>");
 			utility.printHtml("Footer.html");

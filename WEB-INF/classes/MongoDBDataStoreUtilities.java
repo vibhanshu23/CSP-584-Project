@@ -39,7 +39,7 @@ public class MongoDBDataStoreUtilities {
 					.append("productMaker", productmaker).append("reviewRating", Integer.parseInt(reviewrating))
 					.append("reviewDate", reviewdate).append("reviewText", reviewtext)
 					.append("retailerpin", retailerpin).append("retailercity", retailercity)
-					.append("price", (int) Double.parseDouble(price));
+					.append("price", price);
 			myReviews.insert(doc);
 			return "Successfull";
 		} catch (Exception e) {
@@ -387,6 +387,39 @@ public class MongoDBDataStoreUtilities {
 			
 			System.out.println("---------------------------");
 			System.out.println(arrCTABus);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return arrCTABus;
+
+	}
+
+	public static HashMap<String,Product> getDistinctRoutesHashmapForAutoComplete() {
+		HashMap<String,Product> arrCTABus = new HashMap<String,Product>();
+		try {
+			getConnection();
+			DBCursor cursor = myCTABusRoutes.find();
+			while (cursor.hasNext()) {
+				BasicDBObject obj = (BasicDBObject) cursor.next();
+				String id = obj.get("_id").toString();
+				String routeNumber = obj.get("routeNumber").toString();
+				String routeColour = obj.get("routeColour").toString();
+				String routeName = obj.get("routeName").toString();
+				String busRouteDirection = "";//obj.get("busRouteDirection").toString();
+				String stopId = "";//obj.get("stopId").toString();
+				String stopName = "";//obj.get("stopName").toString();
+				String stoplat = "";//obj.get("stoplat").toString();
+				String stoplon = "";//obj.get("stoplon").toString();
+				
+				Product p = new Product(routeNumber,routeName,5.00,"",routeNumber,"New","Train",0);
+				
+				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+				arrCTABus.put(routeNumber,p);
+			}
+			// System.out.println("---------------------------");
+			// System.out.println(arrCTABus);
+
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

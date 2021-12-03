@@ -123,7 +123,8 @@ public class CTAUIViewTrainLines extends HttpServlet {
 			pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 			pw.print("<a style='font-size: 24px;'>CTA Train - "+RouteName+ "Line</a>");
 			pw.print("</h2><div class='entry'><table id='bestseller'>");
-			
+			pw.println("<script type='text/javascript' src='DetailMapArrival.js'></script>");
+
 			try{
 				Collections.sort(arrToUse, new StockComparator());
 				// Collections.sort(arrToUse, Comparator.comparing(CTATrainStopModel::getDistance));
@@ -139,6 +140,7 @@ public class CTAUIViewTrainLines extends HttpServlet {
 			// +"<input type='submit' value='View Stops on Map' class='btnreview'>");
 			pw.print("<li><form method='get' action='CTAUIViewTrainLinesOnMap'>" +
 						"<input type='hidden' name='type' value='train'>"+
+						"<input type='hidden' name='name' value="+RouteName+">"+
 						"<input id='btnGetNearestData' onclick=callPostForNearestData() type='submit' class='btnbuy' value='View Nearest Stops on Map'></form></li>");
 			
 			System.out.println("-------distance -------");

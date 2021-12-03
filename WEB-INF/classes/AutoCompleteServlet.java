@@ -54,6 +54,11 @@ public class AutoCompleteServlet extends HttpServlet {
 		{	
 			String action = request.getParameter("action");
 			searchId = request.getParameter("searchId");
+
+			System.out.println("-----auto complete -------");
+			System.out.println(searchId + " searchid");
+			System.out.println(action + " action");
+			System.out.println(searchId + " searchid");
 			StringBuffer sb = new StringBuffer();
 			if (searchId != null && action.equals("complete")) {
 				searchId = searchId.trim().toLowerCase();

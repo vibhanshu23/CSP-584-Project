@@ -66,24 +66,24 @@ public class AjaxUtility {
 	
 	public static HashMap<String,Product> getData()
 	{
-		HashMap<String,Product> hm=new HashMap<String,Product>();
-		try
-		{
-			getConnection();
+		HashMap<String,Product> hm= MongoDBDataStoreUtilities.getDistinctRoutesHashmapForAutoComplete();//
+		// try
+		// {
+		// 	getConnection();
 			
-		    String selectproduct="select * from  Productdetails";
-		    PreparedStatement pst = conn.prepareStatement(selectproduct);
-			ResultSet rs = pst.executeQuery();
+		//     String selectproduct="select * from  Productdetails";
+		//     PreparedStatement pst = conn.prepareStatement(selectproduct);
+		// 	ResultSet rs = pst.executeQuery();
 			
-			while(rs.next())
-			{	Product p = new Product(rs.getString("Id"),rs.getString("productName"),rs.getDouble("productPrice"),rs.getString("productImage"),rs.getString("productManufacturer"),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
-				hm.put(rs.getString("Id"), p);
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		// 	while(rs.next())
+		// 	{	Product p = new Product(rs.getString("Id"),rs.getString("productName"),rs.getDouble("productPrice"),rs.getString("productImage"),rs.getString("productManufacturer"),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
+		// 		hm.put(rs.getString("Id"), p);
+		// 	}
+		// }
+		// catch(Exception e)
+		// {
+		// 	e.printStackTrace();
+		// }
 		return hm;			
 	}
 	public static void storeData(HashMap<String,Product> productdata)

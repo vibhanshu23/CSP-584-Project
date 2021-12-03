@@ -234,7 +234,9 @@ public class Utilities extends HttpServlet{
 			catch(Exception e){
 				
 			}
+			System.out.println("-------- cart utilities --------");
 			// console = allconsoles.get(name);
+			System.out.println("name " + name);
 			console = allctaBusRoutes.get(name);
 			
 			OrderItem orderitem = new OrderItem(console.getrouteName(), 5, "consoles", console.getrouteName());
