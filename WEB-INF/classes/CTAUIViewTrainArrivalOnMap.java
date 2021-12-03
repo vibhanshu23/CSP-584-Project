@@ -142,55 +142,63 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 			// pw.print("<h3><button id='btnGetArrivalData'>View Arrival Information On Map</h3>");
 			
 			if(midModel.arrDueTrains.size() >0){
-				pw.print("<a style='font-size: 24px;'> Due For Arrival at "+ currentModel.getStationDescriptiveName() +"</a>");
+				pw.print("<h2 class='title meta'>");
+				pw.print("<a style='font-size: 24px;'> Due For Arrival at "+ currentModel.getStationName() +"</a>");
+				pw.print("</h2>");
+				
 				pw.print("<div id='entryContent' class='entry'><table id='bestseller'>");
 				
 				for(CTAArrivalItem obj:midModel.arrDueTrains){
 					
-					int i = midModel.arrDueTrains.indexOf(obj);
+					int i = midModel.arrDueTrains.indexOf(obj)+1;
 					
 					if(i%3==1) pw.print("<tr>");
 					pw.print("<td><div id='shop_item'>");
 					pw.print("<h3>"+"Due at "+obj.getArrT()+"   </h3>");
 					pw.print("<h3>"+"Station Name: "+obj.getStaNm()+"   </h3>");
-					if(i%3==0 || i == midModel.arrDueTrains.size()) pw.print("</tr>");
+					if(i%3==0 || i == midModel.arrDueTrains.size()-1) pw.print("</tr>");
 					i++;
 				}	
 				pw.print("</table>");		
-	
+				
 			}
 			if(midModel.arrScheduledTrains.size() >0){
-				pw.print("<a style='font-size: 24px;'> Sceduled For Arrival at "+ currentModel.getStationDescriptiveName() +"</a>");
+				pw.print("<h2 class='title meta'>");
+				pw.print("<a style='font-size: 24px;'>Scheduled For Arrival at "+ currentModel.getStationName() +"</a>");
+				pw.print("</h2>");
 				pw.print("<div id='entryContent' class='entry'><table id='bestseller'>");
-
+				
 				for(CTAArrivalItem obj:midModel.arrScheduledTrains){
 					
-					int i = midModel.arrScheduledTrains.indexOf(obj);
+					int i = midModel.arrScheduledTrains.indexOf(obj)+1;
 					
 					if(i%3==1) pw.print("<tr>");
 					pw.print("<td><div id='shop_item'>");
 					pw.print("<h3>"+"Due at "+obj.getArrT()+"   </h3>");
 					pw.print("<h3>"+"Station Name: "+obj.getStaNm()+"   </h3>");
-					if(i%3==0 || i == midModel.arrScheduledTrains.size()) pw.print("</tr>");
+					if(i%3==0 || i == midModel.arrScheduledTrains.size()-1) pw.print("</tr>");
 					i++;
 				}		
 				pw.print("</table>");		
-
+				
 			}
-
+			
 			if(midModel.arrScheduledTrains.size() == 0 && midModel.arrDueTrains.size() == 0){
 				pw.print("<a style='font-size: 24px;'> No trains scheduled</a>");
 			}
-			pw.print("</div></div></div>");		
 			pw.print("<input id='btnGetArrivalData' type='submit' class='btnbuy' onclick=callPostForArrivalData() value='View Arrival Information On Map'>");
+	
 
 			
 			
 			
-			
-			
-			pw.println("<div id='map' style='width: 900px; height: 900px;'>");
+			pw.println("<div id='lol' style='width: 100px; height: 40px;'>");
 			pw.println("</div>");
+			
+			pw.println("<div id='map' style='width: 1400px; height: 900px;'>");
+			pw.println("</div>");
+			pw.print("</div>");		
+			pw.print("</div></div>");	
 			utility.printHtml("Footer.html");
 			
 		}
@@ -206,7 +214,7 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 			CTATrainStopModel currentModel = array.get(Integer.parseInt(WebHandler.index));
 			System.out.println("******Arrival do post called*******");
 			System.out.println(WebHandler.strJsonTrainArrival);
-
+			
 			URL url = new URL("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=7568261512d4478089e18f6f95a91847&mapid="+currentModel.getMapId() +"&outputType=JSON");
 			
 			// Open a connection(?) on the URL(??) and cast the response(???)
@@ -231,7 +239,7 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 			System.out.println("----------resonse----------");
 			System.out.println(responseStrBuilder);
 			WebHandler.strJsonTrainArrival = responseStrBuilder.toString();
-
+			
 			Gson gson = new Gson();
 			
 			CTAArivalModelParent parent = gson.fromJson(WebHandler.strJsonTrainArrival.toString(), CTAArivalModelParent.class);

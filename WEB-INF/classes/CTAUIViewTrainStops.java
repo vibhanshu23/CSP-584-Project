@@ -27,7 +27,7 @@ public class CTAUIViewTrainStops extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>CTA Train"+" Trains</a>");
+		pw.print("<a style='font-size: 24px;'>CTA Train"+"</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 
 		ArrayList<String> arr = new ArrayList<String>();
@@ -43,12 +43,12 @@ public class CTAUIViewTrainStops extends HttpServlet {
 		arr.add("PurpleExpress");
 
 		for(String model:arr){
-			int i = arr.indexOf(model);
+			int i = arr.indexOf(model)+1;
 			if(i%3==1) pw.print("<tr>");
 			pw.print("<td><div id='shop_item'>");
-			pw.print("<h3>"+model+"</h3>");
-			pw.print("<strong>"+ "Enter secondary text" + "</strong><ul>");
-			// pw.print("<li id='item'><img src='images/games/"+game.getImage()+"' alt='' /></li>");
+			pw.print("<h3>"+model+" Line</h3>");
+			// pw.print("<strong>"+ "Enter secondary text" + "</strong><ul>");
+			pw.print("<li id='item'><img src='images/games/CTATrain.jpeg' alt='' /></li>");
 			pw.print("<li><form method='get' id='locationForm' action='CTAUIViewTrainLines'>" +
 					"<input type='hidden' name='name' value='"+model+"'>"+
 					"<input type='hidden' name='locationLat' id='locationLat'/>"+
@@ -66,7 +66,7 @@ public class CTAUIViewTrainStops extends HttpServlet {
 			// 		"<input type='hidden' name='access' value=''>"+
 			// 	    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 			pw.print("</ul></div></td>");
-			if(i%3==0 || i == arr.size()) pw.print("</tr>");
+			if(i%3==0 || i == arr.size()-1) pw.print("</tr>");
 			i++;
 		}		
 		pw.print("</table></div></div></div>");		

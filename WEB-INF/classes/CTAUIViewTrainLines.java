@@ -138,16 +138,13 @@ public class CTAUIViewTrainLines extends HttpServlet {
 			// pw.print("<h3>"+"long "+WebHandler.userLong+"</h3>");
 			// pw.print("<h3>"+"lat "+WebHandler.userLat+"</h3>"
 			// +"<input type='submit' value='View Stops on Map' class='btnreview'>");
-			pw.print("<li><form method='get' action='CTAUIViewTrainLinesOnMap'>" +
-						"<input type='hidden' name='type' value='train'>"+
-						"<input type='hidden' name='name' value="+RouteName+">"+
-						"<input id='btnGetNearestData' onclick=callPostForNearestData() type='submit' class='btnbuy' value='View Nearest Stops on Map'></form></li>");
 			
+
 			System.out.println("-------distance -------");
 			WebHandler.arrTrainStopsCurrentlyInUse = new ArrayList<>();
 
 			for( CTATrainStopModel model:arrToUse){
-				int i = arrToUse.indexOf(model);
+				int i = arrToUse.indexOf(model)+1;
 				
 				if(i == 5) break;
 
@@ -157,16 +154,13 @@ public class CTAUIViewTrainLines extends HttpServlet {
 
 				if(i%3==1) pw.print("<tr>");
 				pw.print("<td><div id='shop_item'>");
-				pw.print("<h3>"+model.getStopName()+"</h3>");
-				pw.print("<strong>"+ "" + model.getStationDescriptiveName() + "</strong><ul>");
+				pw.print("<h3>"+model.getStationName()+"</h3>");
+				pw.print("<strong>"+ "" + model.getStopName() + "</strong><ul>");
 				// pw.print("<strong>"+ "Distance " + model.getDistance() + "</strong><ul>");
 				pw.print("<h3>"+"   $"+"7.00"+"   </h3>");
 
-				// pw.print("<li id='item'><img src='images/games/"+game.getImage()+"' alt='' /></li>");
-				pw.print("<li><form method='get' action='CTAUIViewTrainArrivalOnMap'>" +
-				"<input type='hidden' name='indexInArray' value='"+String.valueOf(i)+"'>"+
-				"<input type='hidden' name='name' value='"+RouteName+"'>"+
-						"<input type='submit' class='btnbuy' value='View Arrival Information'></form></li>");
+				pw.print("<li id='item'><img src='images/games/"+"CTATrain.jpeg"+"' alt='' /></li>");
+
 
 
 						String productname=request.getParameter("name");		
@@ -174,34 +168,48 @@ public class CTAUIViewTrainLines extends HttpServlet {
 						String productmaker=request.getParameter("maker");
 				 String productprice=request.getParameter("price");
 
+				 pw.print("<li><form method='post' action='Cart'>" +
+				 "<input type='hidden' name='rt' value='"+RouteName+"'>"+
+				 "<input type='hidden' name='name' value='"+RouteName+"'>"+
+				 "<input type='hidden' name='type' value='Train'>"+
+						 // "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
+						 "<input type='hidden' name='access' value="+model.getStopName()+">"+
+						 "<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
 
-				pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStationDescriptiveName()+"'>"+
+				pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStopName()+"'>"+
 						"<input type='hidden' name='type' value='Train'>"+
 						"<input type='hidden' name='maker' value='"+"Train"+"'>"+
 						"<input type='hidden' name='price' value='"+7.00+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 					    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-				pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStationDescriptiveName()+"'>"+
+				pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStopName()+"'>"+
 						"<input type='hidden' name='type' value='Train'>"+
 						"<input type='hidden' name='maker' value='"+"Train"+"'>"+
 						"<input type='hidden' name='access' value=''>"+
 					    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 
-				pw.print("<li><form method='post' action='Cart'>" +
-				"<input type='hidden' name='rt' value='"+RouteName+"'>"+
-				"<input type='hidden' name='name' value='"+RouteName+"'>"+
-				"<input type='hidden' name='type' value='Train'>"+
-						// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
-						"<input type='hidden' name='access' value="+model.getStationDescriptiveName()+">"+
-						"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
 				
+						pw.print("<li><form method='get' action='CTAUIViewTrainArrivalOnMap'>" +
+						"<input type='hidden' name='indexInArray' value='"+String.valueOf(i)+"'>"+
+						"<input type='hidden' name='name' value='"+RouteName+"'>"+
+								"<input type='submit' class='btnbuy' value='Arrival Info'></form></li>");
 				
 						pw.print("</ul></div></td>");
 				
-				if(i%3==0 || i == arrToUse.size()) pw.print("</tr>");
+				if(i%3==0 || i == arrToUse.size()-1) pw.print("</tr>");
 				i++;
 			}		
-			pw.print("</table></div></div></div>");		
+			pw.print("<tr>");
+			pw.print("</tr>");
+
+			pw.print("<tr>");
+			pw.print("</tr></table>");
+
+			pw.print("<li><form method='get' action='CTAUIViewTrainLinesOnMap'>" +
+						"<input type='hidden' name='type' value='train'>"+
+						"<input type='hidden' name='name' value="+RouteName+">"+
+						"<input id='btnGetNearestData' onclick=callPostForNearestData() type='submit' class='btnbuy' value='View Nearest Stops on Map'></form></li>");
+			pw.print("</div></div></div>");		
 			utility.printHtml("Footer.html");
 			
 		}

@@ -104,6 +104,11 @@ public class ViewReview extends HttpServlet {
 						pw.print("<td>" +reviewRating+ "</td>");
 						pw.print("</tr>");
 						pw.print("<tr>");
+						pw.println("<td> On Time: </td>");
+						reviewRating = r.getRetailerPin().toString();
+						pw.print("<td>" +reviewRating+ "</td>");
+						pw.print("</tr>");
+						pw.print("<tr>");
 						pw.print("<td> Review Date: </td>");
 						reviewDate = r.getReviewDate().toString();
 						pw.print("<td>" +reviewDate+ "</td>");

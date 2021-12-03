@@ -125,7 +125,7 @@ public class CTABusList extends HttpServlet {
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
 					"<input type='hidden' name='type' value='Bus'>"+
 					
-					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
+					"<input type='hidden' name='maker' value='"+"Bus"+"'>"+
 					"<input type='hidden' name='name' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");

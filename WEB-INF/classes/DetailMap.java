@@ -44,10 +44,10 @@ public class DetailMap extends HttpServlet {
         // utility.printHtml("LeftNavigationBar.html");
         
         pw.print("<div id='content'><div class='post'>");
-        pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Data Visualization</a></h2>"
+        pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Stops of Route number: "+RouteNumber+"</a></h2>"
         + "<div class='entry'>");
         
-        pw.println("<div id='map' style='width: 500px; height: 400px;'>");
+        pw.println("<div id='map' style='width: 900px; height: 900px;'>");
         pw.println("</div>");
         pw.println("<script type='text/javascript' src='DetailMap.js'></script>");
         

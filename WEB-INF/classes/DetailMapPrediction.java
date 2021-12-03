@@ -92,7 +92,7 @@ public class DetailMapPrediction extends HttpServlet {
         // utility.printHtml("LeftNavigationBar.html");
         
         pw.print("<div id='content'><div class='post'>");
-        pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Data Visualization</a></h2>"
+        pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Prediction of Route: "+routeNumber+" at Stop: "+stopName+"</a></h2>"
         + "<div class='entry'>");
         
         // pw.println("<div id='map' style='width: 500px; height: 400px;'>");
