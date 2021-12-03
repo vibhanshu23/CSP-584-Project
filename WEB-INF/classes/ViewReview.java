@@ -19,111 +19,120 @@ import java.util.*;
 @WebServlet("/ViewReview")
 
 public class ViewReview extends HttpServlet {
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-	        Utilities utility= new Utilities(request, pw);
+		Utilities utility= new Utilities(request, pw);
 		review(request, response);
 	}
 	
 	protected void review(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        try
-                {           
-                response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
-                Utilities utility = new Utilities(request,pw);
-		if(!utility.isLoggedin()){
-			HttpSession session = request.getSession(true);				
-			session.setAttribute("login_msg", "Please Login to view Review");
-			response.sendRedirect("Login");
-			return;
-		}
-		 String productName=request.getParameter("name");		 
-		HashMap<String, ArrayList<Review>> hm= MongoDBDataStoreUtilities.selectReview();
-		String userName = "";
-		String reviewRating = "";
-		String reviewDate;
-		String reviewText = "";	
-		String price = "";
-		String city ="";
+		try
+		{           
+			response.setContentType("text/html");
+			PrintWriter pw = response.getWriter();
+			Utilities utility = new Utilities(request,pw);
+			if(!utility.isLoggedin()){
+				HttpSession session = request.getSession(true);				
+				session.setAttribute("login_msg", "Please Login to view Review");
+				response.sendRedirect("Login");
+				return;
+			}
 			
-                utility.printHtml("Header.html");
-		utility.printHtml("LeftNavigationBar.html");
-	
-                pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Review</a>");
-		pw.print("</h2><div class='entry'>");
+			String productName=request.getParameter("name");		
+			System.out.println("*******"+ productName); 
+			HashMap<String, ArrayList<Review>> hm= MongoDBDataStoreUtilities.selectReview();
+			String userName = "";
+			String reviewRating = "";
+			String reviewDate;
+			String reviewText = "";	
+			String price = "";
+			String city ="";
 			
+			utility.printHtml("Header.html");
+			utility.printHtml("LeftNavigationBar.html");
+			
+			pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+			pw.print("<a style='font-size: 24px;'>Review</a>");
+			pw.print("</h2><div class='entry'>");
+
+			// System.out.println("**************************");
+			// System.out.println(hm.keySet());
+			// for (String name: hm.keySet()) {
+			// 	String key = name.toString();
+			// 	String value = hm.get(name).toString();
+			// 	System.out.println(key + " " + value);
+			// }
 			//if there are no reviews for product print no review else iterate over all the reviews using cursor and print the reviews in a table
-		if(hm==null)
-		{
-		pw.println("<h2>Mongo Db server is not up and running</h2>");
+			if(hm==null)
+			{
+				pw.println("<h2>Mongo Db server is not up and running</h2>");
+			}
+			else
+			{
+				if(!hm.containsKey(productName)){
+					pw.println("<h2>There are no reviews for this product.</h2>");
+				}else{
+					for (Review r : hm.get(productName)) 
+					{		
+						pw.print("<table class='gridtable'>");
+						pw.print("<tr>");
+						pw.print("<td> Product Name: </td>");
+						productName = r.getProductName();
+						pw.print("<td>" +productName+ "</td>");
+						pw.print("</tr>");
+						pw.print("<tr>");
+						pw.print("<td> userName: </td>");
+						userName = r.getUserName();
+						pw.print("<td>" +userName+ "</td>");
+						pw.print("</tr>");
+						pw.print("<tr>");
+						pw.print("<td> price: </td>");
+						price = r.getPrice();
+						pw.print("<td>" +price+ "</td>");
+						pw.print("</tr>");
+						pw.print("<tr>");
+						pw.print("<td> Customer Experience: </td>");
+						city = r.getRetailerCity();
+						pw.print("<td>" +city+ "</td>");
+						pw.print("</tr>");
+						pw.println("<tr>");
+						pw.println("<td> Review Rating: </td>");
+						reviewRating = r.getReviewRating().toString();
+						pw.print("<td>" +reviewRating+ "</td>");
+						pw.print("</tr>");
+						pw.print("<tr>");
+						pw.print("<td> Review Date: </td>");
+						reviewDate = r.getReviewDate().toString();
+						pw.print("<td>" +reviewDate+ "</td>");
+						pw.print("</tr>");			
+						pw.print("<tr>");
+						pw.print("<td> Review Text: </td>");
+						reviewText = r.getReviewText();
+						pw.print("<td>" +reviewText+ "</td>");
+						pw.print("</tr>");
+						pw.println("</table>");
+					}					
+					
+				}
+			}	       
+			pw.print("</div></div></div>");		
+			utility.printHtml("Footer.html");
+			
 		}
-		else
+		catch(Exception e)
 		{
-                if(!hm.containsKey(productName)){
-				pw.println("<h2>There are no reviews for this product.</h2>");
-			}else{
-		for (Review r : hm.get(productName)) 
-				 {		
-		pw.print("<table class='gridtable'>");
-				pw.print("<tr>");
-				pw.print("<td> Product Name: </td>");
-				productName = r.getProductName();
-				pw.print("<td>" +productName+ "</td>");
-				pw.print("</tr>");
-				pw.print("<tr>");
-				pw.print("<td> userName: </td>");
-				userName = r.getUserName();
-				pw.print("<td>" +userName+ "</td>");
-				pw.print("</tr>");
-				pw.print("<tr>");
-				pw.print("<td> price: </td>");
-				price = r.getPrice();
-				pw.print("<td>" +price+ "</td>");
-				pw.print("</tr>");
-				pw.print("<tr>");
-				pw.print("<td> Retailer City: </td>");
-				city = r.getRetailerCity();
-				pw.print("<td>" +city+ "</td>");
-				pw.print("</tr>");
-				pw.println("<tr>");
-				pw.println("<td> Review Rating: </td>");
-				reviewRating = r.getReviewRating().toString();
-				pw.print("<td>" +reviewRating+ "</td>");
-				pw.print("</tr>");
-				pw.print("<tr>");
-				pw.print("<td> Review Date: </td>");
-				reviewDate = r.getReviewDate().toString();
-				pw.print("<td>" +reviewDate+ "</td>");
-				pw.print("</tr>");			
-				pw.print("<tr>");
-				pw.print("<td> Review Text: </td>");
-				reviewText = r.getReviewText();
-				pw.print("<td>" +reviewText+ "</td>");
-				pw.print("</tr>");
-				pw.println("</table>");
-				}					
-							
-		}
-		}	       
-                pw.print("</div></div></div>");		
-		utility.printHtml("Footer.html");
-	                     	
-                    }
-              	catch(Exception e)
-		{
-                 System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}  			
-       
-	 	
-		}
+		
+		
+	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 		
-            }
+	}
 }

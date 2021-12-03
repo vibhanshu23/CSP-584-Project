@@ -38,7 +38,7 @@ function createDataTable(locations) {
   // navigator.geolocation.getCurrentPosition(function(position) {
     console.log()
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
+      zoom: 15,
       center: new google.maps.LatLng(locations[0][1], locations[0][2]),
       // center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
       mapTypeId: google.maps.MapTypeId.ROADMAP

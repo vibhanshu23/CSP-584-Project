@@ -44,36 +44,42 @@ public class DataAnalytics extends HttpServlet {
                                 pw.print("<td> Product Name: </td>");
                                 pw.print("<td>");
                                        pw.print("<select name='productName'>");
-				       pw.print("<option value='ALL_PRODUCTS'>All Products</option>");
-                                       pw.print("<option value='Xbox'>xboxone</option>");
-                                       pw.print("<option value='xbox360'>xbox360</option>");
-                                       pw.print("<option value='PS4'>PlayStation4</option>");
-                                       pw.print(" <option value='PS3'>PlayStation3</option>");
-                                       pw.print("<option value='WII'>WII</option>");
-									   
-							           pw.print("<option value='Apple Ipad Pro'>Apple Ipad Pro</option>");
-										pw.print("<option value='Apple Ipad 3'>Apple Ipad 3</option>");
-										pw.print("<option value='Surface'>Surface</option>");
-										pw.print("<option value='Surface Pro 4'>Surface Pro 4</option>");
-										pw.print("<option value='Samsung Tab 2'>Samsung Tab 2</option>");
-										pw.print("<option value='FIFA 2016'>FIFA 2016</option>");
-										pw.print("<option value='Need for Speed'>Need for Speed</option>");
-										pw.print("<option value='Call Of Duty'>Call Of Duty</option>");
-										pw.print("<option value='Evolve'>Evolve</option>");
-										pw.print("<option value='XBOX Speeding Wheel'>XBOX Speeding Wheel</option>");
-										pw.print("<option value='XBOX Wireless Adapter'>XBOX Wireless Adapter</option>");
-										pw.print("<option value='PS Controller'>PS Controller</option>");
-										pw.print("<option value='PS Gaming HeadPhones'>PS Gaming HeadPhones</option>");
-										pw.print("<option value='Nintendo Controller'>Nintendo Controller</option>");
-										pw.print("<option value='Nintendo Racing Controller'>Nintendo Racing Controller</option>");
-										pw.print("<option value='Charger'>Charger</option>");
-										pw.print("<option value='Steering'>Steering</option>");
-										pw.print("<option value='Remote'>Remote</option>");
-										pw.print("<option value='Keypad'>Keypad</option>");
-										pw.print("<option value='Wireless'>Wireless</option>");
-										pw.print("<option value='Wireless adapter'>Wireless adapter</option>");
-										pw.print("<option value='Starterkit'>Starterkit</option>");
 
+									   ArrayList <CTABusObject> arrCTABus = MongoDBDataStoreUtilities.getDistinctRoutes();
+									   int i = 1; int size= arrCTABus.size();
+									   pw.print("<option value='ALL_PRODUCTS'>All Products</option>");
+
+									   for(CTABusObject obj:arrCTABus){
+
+                                       pw.print("<option value="+obj.getrouteName() +">"+obj.getrouteName()+"</option>");
+                                    //    pw.print("<option value='xbox360'>xbox360</option>");
+                                    //    pw.print("<option value='PS4'>PlayStation4</option>");
+                                    //    pw.print(" <option value='PS3'>PlayStation3</option>");
+                                    //    pw.print("<option value='WII'>WII</option>");
+									   
+							        //    pw.print("<option value='Apple Ipad Pro'>Apple Ipad Pro</option>");
+									// 	pw.print("<option value='Apple Ipad 3'>Apple Ipad 3</option>");
+									// 	pw.print("<option value='Surface'>Surface</option>");
+									// 	pw.print("<option value='Surface Pro 4'>Surface Pro 4</option>");
+									// 	pw.print("<option value='Samsung Tab 2'>Samsung Tab 2</option>");
+									// 	pw.print("<option value='FIFA 2016'>FIFA 2016</option>");
+									// 	pw.print("<option value='Need for Speed'>Need for Speed</option>");
+									// 	pw.print("<option value='Call Of Duty'>Call Of Duty</option>");
+									// 	pw.print("<option value='Evolve'>Evolve</option>");
+									// 	pw.print("<option value='XBOX Speeding Wheel'>XBOX Speeding Wheel</option>");
+									// 	pw.print("<option value='XBOX Wireless Adapter'>XBOX Wireless Adapter</option>");
+									// 	pw.print("<option value='PS Controller'>PS Controller</option>");
+									// 	pw.print("<option value='PS Gaming HeadPhones'>PS Gaming HeadPhones</option>");
+									// 	pw.print("<option value='Nintendo Controller'>Nintendo Controller</option>");
+									// 	pw.print("<option value='Nintendo Racing Controller'>Nintendo Racing Controller</option>");
+									// 	pw.print("<option value='Charger'>Charger</option>");
+									// 	pw.print("<option value='Steering'>Steering</option>");
+									// 	pw.print("<option value='Remote'>Remote</option>");
+									// 	pw.print("<option value='Keypad'>Keypad</option>");
+									// 	pw.print("<option value='Wireless'>Wireless</option>");
+									// 	pw.print("<option value='Wireless adapter'>Wireless adapter</option>");
+									// 	pw.print("<option value='Starterkit'>Starterkit</option>");
+									   }
                                 pw.print("</td>");
 			pw.print("<tr>");
 			     pw.print("<td> <input type='checkbox' name='queryCheckBox' value='productPrice'> Select </td>");
@@ -104,7 +110,7 @@ public class DataAnalytics extends HttpServlet {
 			
 			pw.print("<tr>");
 								pw.print("<td> <input type='checkbox' name='queryCheckBox' value='retailerCity'> Select </td>");
-                                pw.print("<td> Retailer City: </td>");
+                                pw.print("<td> Customer Experience: </td>");
                                 pw.print("<td>");
                                 pw.print("<input type='text' name='retailerCity' /> </td>");
 								
@@ -112,7 +118,7 @@ public class DataAnalytics extends HttpServlet {
 							
 							 pw.print("<tr>");
 								pw.print("<td> <input type='checkbox' name='queryCheckBox' value='retailerZipcode'> Select </td>");
-                               pw.print(" <td> Retailer Zip code: </td>");
+                               pw.print(" <td> On Time: </td>");
                                pw.print(" <td>");
                                     pw.print("<input type='text' name='retailerZipcode' /> </td>");
 					        pw.print("</tr>");

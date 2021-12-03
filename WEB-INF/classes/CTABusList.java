@@ -110,7 +110,7 @@ public class CTABusList extends HttpServlet {
 			// else if(i%5==1)pw.print("<h3>"+"   $"+"2.00"+"   </h3>");
 			// else if(i%7==1)pw.print("<h3>"+"   $"+"7.00"+"   </h3>");
 			// else 
-			System.out.println("aijhcbkasjndkaj" + obj.getrouteName());
+			// System.out.println("aijhcbkasjndkaj" + obj.getrouteName());
 			pw.print("<h3>"+"   $"+"5.00"+"   </h3>");
 			pw.print("<li><form method='post' action='Cart'>" +
 			"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
@@ -123,14 +123,16 @@ public class CTABusList extends HttpServlet {
 			"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
 			"<input type='submit' class='btnbuy' value='Show Routes'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='rt' value='"+obj.getrouteNumber()+"'>"+
-					"<input type='hidden' name='type' value='consoles'>"+
+					"<input type='hidden' name='type' value='Bus'>"+
+					
 					"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 					"<input type='hidden' name='name' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='rt' value='"+obj.getrouteName()+"'>"+
-					"<input type='hidden' name='type' value='consoles'>"+
-					// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
+					"<input type='hidden' name='type' value='Bus'>"+
+					"<input type='hidden' name='name' value='"+obj.getrouteName()+"'>"+
+					"<input type='hidden' name='maker' value='"+obj.getrouteName()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
 				    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 			pw.print("</ul></div></td>");

@@ -158,25 +158,46 @@ public class CTAUIViewTrainLines extends HttpServlet {
 				if(i%3==1) pw.print("<tr>");
 				pw.print("<td><div id='shop_item'>");
 				pw.print("<h3>"+model.getStopName()+"</h3>");
-				pw.print("<strong>"+ "$" + model.getStationDescriptiveName() + "</strong><ul>");
-				pw.print("<strong>"+ "Distance " + model.getDistance() + "</strong><ul>");
+				pw.print("<strong>"+ "" + model.getStationDescriptiveName() + "</strong><ul>");
+				// pw.print("<strong>"+ "Distance " + model.getDistance() + "</strong><ul>");
+				pw.print("<h3>"+"   $"+"7.00"+"   </h3>");
+
 				// pw.print("<li id='item'><img src='images/games/"+game.getImage()+"' alt='' /></li>");
 				pw.print("<li><form method='get' action='CTAUIViewTrainArrivalOnMap'>" +
 				"<input type='hidden' name='indexInArray' value='"+String.valueOf(i)+"'>"+
 				"<input type='hidden' name='name' value='"+RouteName+"'>"+
 						"<input type='submit' class='btnbuy' value='View Arrival Information'></form></li>");
-				// pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-				// 		"<input type='hidden' name='type' value='games'>"+
-				// 		"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-				// 		"<input type='hidden' name='price' value='"+game.getPrice()+"'>"+
-				// 		"<input type='hidden' name='access' value=''>"+
-				// 	    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-				// pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+entry.getKey()+"'>"+
-				// 		"<input type='hidden' name='type' value='games'>"+
-				// 		"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
-				// 		"<input type='hidden' name='access' value=''>"+
-				// 	    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
-				pw.print("</ul></div></td>");
+
+
+						String productname=request.getParameter("name");		
+						String producttype=request.getParameter("type");
+						String productmaker=request.getParameter("maker");
+				 String productprice=request.getParameter("price");
+
+
+				pw.print("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStationDescriptiveName()+"'>"+
+						"<input type='hidden' name='type' value='Train'>"+
+						"<input type='hidden' name='maker' value='"+"Train"+"'>"+
+						"<input type='hidden' name='price' value='"+7.00+"'>"+
+						"<input type='hidden' name='access' value=''>"+
+					    "<input type='submit' value='WriteReview' class='btnreview'></form></li>");
+				pw.print("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+RouteName + " - "+model.getStationDescriptiveName()+"'>"+
+						"<input type='hidden' name='type' value='Train'>"+
+						"<input type='hidden' name='maker' value='"+"Train"+"'>"+
+						"<input type='hidden' name='access' value=''>"+
+					    "<input type='submit' value='ViewReview' class='btnreview'></form></li>");
+
+				pw.print("<li><form method='post' action='Cart'>" +
+				"<input type='hidden' name='rt' value='"+RouteName+"'>"+
+				"<input type='hidden' name='name' value='"+RouteName+"'>"+
+				"<input type='hidden' name='type' value='Train'>"+
+						// "<input type='hidden' name='maker' value='"+obj.getrouteName+"'>"+
+						"<input type='hidden' name='access' value="+model.getStationDescriptiveName()+">"+
+						"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
+				
+				
+						pw.print("</ul></div></td>");
+				
 				if(i%3==0 || i == arrToUse.size()) pw.print("</tr>");
 				i++;
 			}		

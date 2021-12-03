@@ -518,4 +518,309 @@ public static HashMap<String,Product> getData()
 
 
 	
-}	
+	
+
+// public static HashMap<String,Product> getStopData()
+// 	{
+// 		HashMap<String,Product> hm=new HashMap<String,Product>();
+// 		try
+// 		{
+// 			getConnection();
+// 			Statement stmt=conn.createStatement();
+// 			String selectCustomerQuery="select * from Stops";
+// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+// 			while(rs.next())
+// 			{	Product p = new Product(rs.getString("routeNumber"),rs.getString("routeName"),rs.getDouble("5.00"),rs.getString("routeColor"),rs.getString(""),rs.getString(""),rs.getString(""),rs.getDouble(""));//rs.getString(""productManufacturer""),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
+// 				hm.put(rs.getString("Id"), p);
+// 			}
+// 		}
+// 		catch(Exception e)
+// 		{
+// 		e.printStackTrace();	
+// 		}
+// 		return hm;			
+// 	}
+
+
+// 	public static HashMap<String,CTABusObject> getDistinctRoutesHashmap() {
+// 		HashMap<String,CTABusObject> arrCTABus = new HashMap<String,CTABusObject>();
+// 		try {
+
+// 			getConnection();
+// 			Statement stmt=conn.createStatement();
+// 			String selectCustomerQuery="select * from Stops";
+// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+
+// 			while(rs.next())
+// 			{	
+				
+// 				String id = "";//rs.getString("_id").toString();
+// 				String routeNumber = rs.getString("routeNumber");
+// 				String routeColour = rs.getString("routeColour").toString();
+// 				String routeName = rs.getString("routeName").toString();
+// 				String busRouteDirection = "";//rs.getString("busRouteDirection").toString();
+// 				String stopId = "";//rs.getString("stopId").toString();
+// 				String stopName = "";//rs.getString("stopName").toString();
+// 				String stoplat = "";//rs.getString("stoplat").toString();
+// 				String stoplon = "";//rs.getString("stoplon").toString();
+// 				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 				arrCTABus.put(routeNumber,CTA);
+				
+				
+// 			}
+// 			// System.out.println("---------------------------");
+// 			// System.out.println(arrCTABus);
+
+
+// 		} catch (Exception e) {
+// 			System.out.println(e.getMessage());
+// 		}
+// 		return arrCTABus;
+
+// 	}
+	
+// 	public static ArrayList<CTABusObject> getDistinctRoutes() {
+// 		ArrayList<CTABusObject> arrCTABus = new ArrayList<CTABusObject>();
+// 		try {
+
+// 			// getConnection();
+// 			// DBCursor cursor = myCTABusRoutes.find();
+// 			// // distinct("categories", Object.class).iterator();
+// 			// // collection.distinct("countries", String.class);
+
+// 			// // Iterator<String> files = myCTABus.distinct("routeNumber").iterator();
+// 			// // while(files.hasNext()) {
+// 			// //   System.out.println(files.next());
+// 			// // }
+// 			// while (cursor.hasNext()) {
+// 				getConnection();
+// 				Statement stmt=conn.createStatement();
+// 				String selectCustomerQuery="select * from Stops";
+// 				ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+	
+// 				while(rs.next())
+// 				{	
+// 				// BasicDBObject obj = (BasicDBObject) cursor.next();
+// 				String id = rs.getString("_id").toString();
+// 				String routeNumber = rs.getString("routeNumber").toString();
+// 				String routeColour = rs.getString("routeColour").toString();
+// 				String routeName = rs.getString("routeName").toString();
+// 				String busRouteDirection = "";//rs.getString("busRouteDirection").toString();
+// 				String stopId = "";//rs.getString("stopId").toString();
+// 				String stopName = "";//rs.getString("stopName").toString();
+// 				String stoplat = "";//rs.getString("stoplat").toString();
+// 				String stoplon = "";//rs.getString("stoplon").toString();
+// 				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 				arrCTABus.add(CTA);
+// 				// System.out.println(routeNumber);
+// 				// System.out.println(routeColour);
+// 				// System.out.println(routeName);
+// 				// System.out.println(busRouteDirection);
+// 				// System.out.println(stopId);
+// 				// System.out.println(stoplat);
+
+// 				// String id = files.next().toString();
+// 				// String routeNumber = files.next().toString();//rs.getString("routeNumber").toString();
+// 				// String routeColour = files.next().toString();//rs.getString("routeColour").toString();
+// 				// String routeName = files.next().toString();//rs.getString("routeName").toString();
+// 				// String busRouteDirection = files.next().toString();//rs.getString("busRouteDirection").toString();
+// 				// String stopId = files.next().toString();//rs.getString("stopId").toString();
+// 				// String stopName = files.next().toString();//rs.getString("stopName").toString();
+// 				// String stoplat = files.next().toString();//rs.getString("stoplat").toString();
+// 				// String stoplon = files.next().toString();//rs.getString("stoplon").toString();
+// 				// CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 				// arrCTABus.add(CTA);
+// 			}
+// 			// System.out.println("---------------------------");
+// 			// System.out.println(arrCTABus);
+
+
+// 		} catch (Exception e) {
+// 			System.out.println(e.getMessage());
+// 		}
+// 		return arrCTABus;
+
+// 	}
+
+// 	// public static HashMap<String,CTABusObject> getDistinctRoutesHashmap() {
+// 	// 	HashMap<String,CTABusObject> arrCTABus = new HashMap<String,CTABusObject>();
+// 	// 	try {
+
+// 	// 		// getConnection();
+// 	// 		// DBCursor cursor = myCTABusRoutes.find();
+// 	// 		// while (cursor.hasNext()) {
+// 	// 			getConnection();
+// 	// 			Statement stmt=conn.createStatement();
+// 	// 			String selectCustomerQuery="select * from Stops";
+// 	// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+	
+// 	// 			while(rs.next())
+// 	// 			{	
+// 	// 			BasicDBObject obj = (BasicDBObject) cursor.next();
+// 	// 			String id = rs.getString("_id").toString();
+// 	// 			String routeNumber = rs.getString("routeNumber").toString();
+// 	// 			String routeColour = rs.getString("routeColour").toString();
+// 	// 			String routeName = rs.getString("routeName").toString();
+// 	// 			String busRouteDirection = "";//rs.getString("busRouteDirection").toString();
+// 	// 			String stopId = "";//rs.getString("stopId").toString();
+// 	// 			String stopName = "";//rs.getString("stopName").toString();
+// 	// 			String stoplat = "";//rs.getString("stoplat").toString();
+// 	// 			String stoplon = "";//rs.getString("stoplon").toString();
+// 	// 			CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 	// 			arrCTABus.put(routeNumber,CTA);
+// 	// 		}
+// 	// 		// System.out.println("---------------------------");
+// 	// 		// System.out.println(arrCTABus);
+
+
+// 	// 	} catch (Exception e) {
+// 	// 		System.out.println(e.getMessage());
+// 	// 	}
+// 	// 	return arrCTABus;
+
+// 	// }
+
+// 	public static ArrayList<CTABusObject> getStopsForRouteNumber(String routeString) {
+// 		ArrayList<CTABusObject> arrCTABus = new ArrayList<CTABusObject>();
+// 		try {
+
+// 			getConnection();
+// 			Statement stmt=conn.createStatement();
+// 			String selectCustomerQuery="select * from Stops where routeNumber = "+routeString+" and (busRouteDirection = 'Westbound' or busRouteDirection = 'Northbound')";
+// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+
+// 			while(rs.next())
+// 			{	
+// 			// getConnection();
+// 			// BasicDBObject whereQuery = new BasicDBObject();
+// 			// whereQuery.put("routeNumber", routeString);
+// 			// var stringDir = "";
+// 			// Iterator<String> files = myCTABus.distinct("busRouteDirection",whereQuery).iterator();
+// 			// while(files.hasNext()) {
+// 			// 	stringDir = files.next();
+
+// 			// }
+
+		
+// 			// DBCursor cursor = myCTABus.find(whereQuery);
+// 			// while(cursor.hasNext()) {
+// 			// 	BasicDBObject obj = (BasicDBObject) cursor.next();
+// 				String busRouteDirection = rs.getString("busRouteDirection").toString();
+
+// 				// if (stringDir.equals(busRouteDirection)){
+// 					String id = rs.getString("_id").toString();
+// 					String routeNumber = rs.getString("routeNumber").toString();
+// 					String routeColour = rs.getString("routeColour").toString();
+// 					String routeName = rs.getString("routeName").toString();
+// 					String stopId = rs.getString("stopId").toString();
+// 					String stopName = rs.getString("stopName").toString();
+// 					String stoplat = rs.getString("stoplat").toString();
+// 					String stoplon = rs.getString("stoplon").toString();
+// 					CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 					arrCTABus.add(CTA);
+// 				// }
+				
+// 			}
+			
+// 			// System.out.println("---------------------------");
+// 			// System.out.println(arrCTABus);
+
+			
+// 		} catch (Exception e) {
+// 			System.out.println(e.getMessage());
+// 		}
+// 		return arrCTABus;
+
+// 	}
+
+// 	public static ArrayList<CTABusObject> getNearestStops() {
+// 		ArrayList<CTABusObject> arrCTABus = new ArrayList<CTABusObject>();
+// 		System.out.println("---------------------------");
+// 		System.out.println("----reched nearest stops-----");
+// 		try {
+
+// 			// getConnection();
+// 			// List<String> stopsID = myCTABus.distinct("stopId");
+// 			getConnection();
+// 			Statement stmt=conn.createStatement();
+// 			String selectCustomerQuery="select * from Stops";
+// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+
+// 			while(rs.next())
+// 			{	
+// 			for( String stop:stopsID){
+// 				System.out.println("stopID" + stop);
+
+// 				BasicDBObject whereQuery = new BasicDBObject();
+// 				whereQuery.put("stopId", stop);
+// 				DBCursor cursor = myCTABus.find(whereQuery);
+				  
+
+// 				while (cursor.hasNext()) {
+// 					BasicDBObject obj = (BasicDBObject) cursor.next();
+// 					String id = rs.getString("_id").toString();
+// 					String routeNumber = rs.getString("routeNumber").toString();
+// 					String routeColour = rs.getString("routeColour").toString();
+// 					String routeName = rs.getString("routeName").toString();
+// 					String busRouteDirection = rs.getString("busRouteDirection").toString();
+// 					String stopId = rs.getString("stopId").toString();
+// 					String stopName = rs.getString("stopName").toString();
+// 					String stoplat = rs.getString("stoplat").toString();
+// 					String stoplon = rs.getString("stoplon").toString();
+// 					CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 					arrCTABus.add(CTA);
+					
+// 				}
+// 			}
+			
+// 			System.out.println("---------------------------");
+// 			System.out.println(arrCTABus);
+
+// 		} catch (Exception e) {
+// 			System.out.println(e.getMessage());
+// 		}
+// 		return arrCTABus;
+
+// 	}
+
+// 	public static HashMap<String,Product> getDistinctRoutesHashmapForAutoComplete() {
+// 		HashMap<String,Product> arrCTABus = new HashMap<String,Product>();
+// 		try {
+// 			getConnection();
+// 			Statement stmt=conn.createStatement();
+// 			String selectCustomerQuery="select * from Stops";
+// 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+
+// 			while(rs.next())
+// 			{	
+// 			// getConnection();
+// 			// DBCursor cursor = myCTABusRoutes.find();
+// 			// while (cursor.hasNext()) {
+// 				// BasicDBObject obj = (BasicDBObject) cursor.next();
+// 				String id = rs.getString("_id").toString();
+// 				String routeNumber = rs.getString("routeNumber").toString();
+// 				String routeColour = rs.getString("routeColour").toString();
+// 				String routeName = rs.getString("routeName").toString();
+// 				String busRouteDirection = "";//rs.getString("busRouteDirection").toString();
+// 				String stopId = "";//rs.getString("stopId").toString();
+// 				String stopName = "";//rs.getString("stopName").toString();
+// 				String stoplat = "";//rs.getString("stoplat").toString();
+// 				String stoplon = "";//rs.getString("stoplon").toString();
+				
+// 				Product p = new Product(routeNumber,routeName,5.00,"",routeNumber,"New","Train",0);
+				
+// 				CTABusObject CTA = new CTABusObject(id, routeNumber, routeColour, routeName, busRouteDirection, stopId, stopName, stoplat, stoplon);
+// 				arrCTABus.put(routeNumber,p);
+// 			}
+// 			// System.out.println("---------------------------");
+// 			// System.out.println(arrCTABus);
+
+
+// 		} catch (Exception e) {
+// 			System.out.println(e.getMessage());
+// 		}
+// 		return arrCTABus;
+
+	// }
+
+}

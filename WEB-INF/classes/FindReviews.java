@@ -282,7 +282,7 @@ public class FindReviews extends HttpServlet {
 							+   "Rating: "+rating.get(detailcount)+"</br>"
 							+   "Price: "+price.get(detailcount)+"</br>"
 							+   "retailercity: "+retailercity.get(detailcount)+"</br>"
-							+   "retailerzipcode: "+zipcode.get(detailcount)+"</br>"
+							+   "On Time: "+zipcode.get(detailcount)+"</br>"
 							+	"Review: "+productReview.get(detailcount)+"</td></tr>";
 												
 					pw.print(tableData);
@@ -309,14 +309,22 @@ public class FindReviews extends HttpServlet {
 			   
 			while (dbCursor.hasNext()) {		
 			BasicDBObject bobj = (BasicDBObject) dbCursor.next();
-			
+			String str = "";
+			if(bobj.getString("retailerpin").equals("1")){
+				str = "Yes";
+			}
+			else{
+				str = "No";
+
+			}
+
 			tableData =   "<tr><td align='center' colspan='2'>Review</td></tr><tr><td>Name: </td><td>" + bobj.getString("productName") + "</td></tr>"
 						+ "<tr><td>Rating:</td><td>" + bobj.getString("reviewRating") + "</td></tr>"
-						+ "<tr><td>Price:</td><td>" + bobj.getString("price") + "</td></tr>"
-						+ "<tr><td>Retailer City:</td><td>" + bobj.getString("retailercity") + "</td></tr>"
+						+ "<tr><td>Price:</td><td>" + "$5.00" + "</td></tr>"
+						+ "<tr><td>Customer Experience:</td><td>" + bobj.getString("retailercity") + "</td></tr>"
 						+ "<tr><td>Date:</td><td>" + bobj.getString("reviewDate") + "</td></tr>"
 						+ "<tr><td>Review Text:</td><td>" + bobj.getString("reviewText")+"</td><tr>"
-						+ "<tr><td>RetailerZipCode:</td><td>" + bobj.getString("retailerpin")+"</td><tr>";
+						+ "<tr><td>On Time:</td><td>" +str +"</td><tr>";
 
 				
 				 pw.print(tableData);

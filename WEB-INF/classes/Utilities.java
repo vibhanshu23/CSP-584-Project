@@ -214,21 +214,22 @@ public class Utilities extends HttpServlet{
 	/* StoreProduct Function stores the Purchased product in Orders HashMap according to the User Names.*/
 
 	public void storeProduct(String name,String type,String maker, String acc){
+		System.out.println(name+type+maker+acc);
 		if(!OrdersHashMap.orders.containsKey(username())){	
 			ArrayList<OrderItem> arr = new ArrayList<OrderItem>();
 			OrdersHashMap.orders.put(username(), arr);
 		}
 		ArrayList<OrderItem> orderItems = OrdersHashMap.orders.get(username());
 		// HashMap<String,Console> allconsoles = new HashMap<String,Console> ();
-		HashMap<String,CTABusObject> allctaBusRoutes = new HashMap<String,CTABusObject> ();
+		ArrayList<CTABusObject> allctaBusRoutes = new ArrayList<CTABusObject> ();
 			HashMap<String,Tablet> alltablets = new HashMap<String,Tablet> ();
 			HashMap<String,Game> allgames = new HashMap<String,Game> ();
 			HashMap<String,Accessory> allaccessories=new HashMap<String,Accessory>();
 		if(type.equals("consoles")){
-			CTABusObject console;
+			CTABusObject console = new CTABusObject();
 			try{
 			// allconsoles = MySqlDataStoreUtilities.getConsoles();
-			allctaBusRoutes = MongoDBDataStoreUtilities.getDistinctRoutesHashmap();
+			allctaBusRoutes = MongoDBDataStoreUtilities.getDistinctRoutes();
 			
 			}
 			catch(Exception e){
@@ -237,12 +238,22 @@ public class Utilities extends HttpServlet{
 			System.out.println("-------- cart utilities --------");
 			// console = allconsoles.get(name);
 			System.out.println("name " + name);
-			console = allctaBusRoutes.get(name);
+			// console = allctaBusRoutes.get(name);
 			
-			OrderItem orderitem = new OrderItem(console.getrouteName(), 5, "consoles", console.getrouteName());
+			for(CTABusObject obj:allctaBusRoutes){
+				// System.out.println("obj name " + obj.getrouteName());
+
+				if(obj.getrouteName().equals(name)){
+					
+					console = obj;
+					System.out.println("obj name " + obj.getrouteName());
+				}
+			}
+			
+			OrderItem orderitem = new OrderItem(console.getrouteName() , 5, "consoles", console.getrouteNumber());
 			orderItems.add(orderitem);
 		}
-		if(type.equals("games")){
+		if(type.equals("Train")){
 			Game game = null;
 			try{
 			allgames = MySqlDataStoreUtilities.getGames();
@@ -251,7 +262,7 @@ public class Utilities extends HttpServlet{
 				
 			}
 			game = allgames.get(name);
-			OrderItem orderitem = new OrderItem(game.getName(), game.getPrice(), game.getImage(), game.getRetailer());
+			OrderItem orderitem = new OrderItem(name+" - " +acc, 7, "", acc);
 			orderItems.add(orderitem);
 		}
 		if(type.equals("tablets")){

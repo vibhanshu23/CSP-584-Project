@@ -59,13 +59,14 @@ public class WriteReview extends HttpServlet {
 	        pw.print("<input type='hidden' name='producttype' value='"+producttype+"'>");
 		pw.print("</td></tr>");
 		pw.print("<tr><td> Product Price:</td><td>");
-                pw.print(productprice);
-	        pw.print("<input type='hidden' name='productprice' value='"+productprice+"'>");
+                pw.print("$5.00");
+	        pw.print("<input type='hidden' name='productprice' value='"+5+"'>");
 		pw.print("</td></tr>");		
-                pw.print("<tr><td> Product Maker: </td><td>");
-                pw.print(productmaker);
+                // pw.print("<tr><td> Product Maker: </td><td>");
+                // pw.print(productmaker);
 		pw.print("<input type='hidden' name='productmaker' value='"+productmaker+"'>");
-                pw.print("</td></tr><table>");
+		// pw.print("</td></tr><table>");
+		pw.print("<table>");
 		
   				pw.print("<table><tr></tr><tr></tr><tr><td> Review Rating: </td>");
 					pw.print("<td>");
@@ -78,13 +79,23 @@ public class WriteReview extends HttpServlet {
 					pw.print("</td></tr>");
 				
 					pw.print("<tr>");
-					pw.print("<td> Retailer Zip Code: </td>");
-					pw.print("<td> <input type='number' name='zipcode' required> </td>");
-			        pw.print("</tr>");		
+					pw.print("<td>On Time :</td>");
+					// pw.print("<td> : </td>");
+					pw.print("<td>");
+
+						pw.print("<select name='zipcode'>");
+						pw.print("<option value='Yes' selected>Yes</option>");
+						pw.print("<option value='No'>No</option>");
+					pw.print("</td></tr>");
+
+					// pw.print("<tr>");
+					// pw.print("<td> : </td>");
+					// pw.print("<td> <input type='number' name='zipcode' required> </td>");
+			        // pw.print("</tr>");		
 
 
 					pw.print("<tr>");
-					pw.print("<td> Retailer City: </td>");
+					pw.print("<td> Customer Experience: </td>");
 					pw.print("<td> <input type='text' name='retailercity' required> </td>");
 			        pw.print("</tr>");							
 		
