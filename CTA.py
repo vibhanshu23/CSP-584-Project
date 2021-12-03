@@ -24,29 +24,29 @@ db_connection = pymysql.connect(host='127.0.0.1',database="exampledatabase", use
 cursor = db_connection.cursor()
 db_connection.commit()
 
-# cursor.execute("DROP TABLE IF EXISTS Routes;")
-# cursor.execute("DROP TABLE IF EXISTS Stops;")
-# db_connection.commit()
+cursor.execute("DROP TABLE IF EXISTS Routes;")
+cursor.execute("DROP TABLE IF EXISTS Stops;")
+db_connection.commit()
 
-# cursor.execute("""CREATE TABLE Routes(
-#                 routeNumber varchar(255),
-#                 routeColour varchar(255),
-#                 routeName varchar(255)
-#                 );""")
+cursor.execute("""CREATE TABLE Routes(
+                 routeNumber varchar(255),
+                 routeColour varchar(255),
+                 routeName varchar(255)
+                 );""")
 
-# cursor.execute("""CREATE TABLE Stops(
-#                 routeNumber varchar(255),
-#                 routeColour varchar(255),
-#                 routeName varchar(255),
-#                 busRouteDirection varchar(255),
-#                 stopId varchar(255),
-#                 stopName varchar(255),
-#                 stoplat varchar(255),
-                # stoplon varchar(255)
-                # );""")
+cursor.execute("""CREATE TABLE Stops(
+                 routeNumber varchar(255),
+                 routeColour varchar(255),
+                 routeName varchar(255),
+                 busRouteDirection varchar(255),
+                 stopId varchar(255),
+                 stopName varchar(255),
+                 stoplat varchar(255),
+                 stoplon varchar(255)
+                 );""")
 
-#
-#
+
+
 #serverStatusResult=db.command("serverStatus")
 #pprint(serverStatusResult)
 

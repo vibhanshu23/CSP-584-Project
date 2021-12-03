@@ -19,7 +19,7 @@ public class ProductCrud extends HttpServlet {
 			String action = request.getParameter("button");
 			
 			String msg = "good";
-			String producttype= "",productId="",productName="",productImage="",productManufacturer="",productCondition="",prod = "";
+			String producttype= "",productId="",productName="",busRouteDirection="",stopId="",stopName="",stoplat = "",stoplon = "";
 			double productPrice=0.0,productDiscount = 0.0;
 			HashMap<String,Console> allconsoles = new HashMap<String,Console> ();
 			HashMap<String,Tablet> alltablets = new HashMap<String,Tablet> ();
@@ -30,139 +30,190 @@ public class ProductCrud extends HttpServlet {
 				 producttype = request.getParameter("producttype");
 				 productId   = request.getParameter("productId");
 				 productName = request.getParameter("productName"); 
-				 productPrice = Double.parseDouble(request.getParameter("productPrice"));
-				 productImage = request.getParameter("productImage");
-				 productManufacturer = request.getParameter("productManufacturer");
-				 productCondition = request.getParameter("productCondition");
-				 productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
+				 busRouteDirection   = request.getParameter("busRouteDirection");
+				 stopId = request.getParameter("stopId");
+				 stopName   = request.getParameter("stopName");
+				 stoplat = request.getParameter("stoplat");
+				 stoplon   = request.getParameter("stoplon");
+				//  productPrice = Double.parseDouble(request.getParameter("productPrice"));
+				//  productImage = request.getParameter("productImage");
+				//  productManufacturer = request.getParameter("productManufacturer");
+				//  productCondition = request.getParameter("productCondition");
+				//  productDiscount = Double.parseDouble(request.getParameter("productDiscount"));
 				 
 			}
 			else{
+				producttype = request.getParameter("producttype");
 				productId   = request.getParameter("productId");
+				productName = request.getParameter("productName"); 
+				busRouteDirection   = request.getParameter("busRouteDirection");
+				stopId = request.getParameter("stopId");
+				stopName   = request.getParameter("stopName");
+				stoplat = request.getParameter("stoplat");
+				stoplon   = request.getParameter("stoplon");
+
 			}	
 			utility.printHtml("Header.html");
 			utility.printHtml("LeftNavigationBar.html");
 
-			if(action.equals("add"))
+			if(action.equals("Add Route"))
 			{
-			  			if(producttype.equals("consoles")){
-				  allconsoles = MySqlDataStoreUtilities.getConsoles();
-				  if(allconsoles.containsKey(productId)){
-					  msg = "Product already available";
+				msg = "good";
+			//   		if(producttype.equals("consoles")){
+			// 	  allconsoles = MySqlDataStoreUtilities.getConsoles();
+			// 	  if(allconsoles.containsKey(productId)){
+			// 		  msg = "Product already available";
 					 
-				  }
+			// 	  }
 					  
-			  }else if(producttype.equals("games"))
-			  {
-				  allgames = MySqlDataStoreUtilities.getGames();
-				  if(allgames.containsKey(productId)){
-					  msg = "Product already available";
-				  }
-			  }else if (producttype.equals("tablets"))
-			  {
-				  alltablets = MySqlDataStoreUtilities.getTablets();
-				  if(alltablets.containsKey(productId)){
-					  msg = "Product already available";
-				  }
-			  }else if (producttype.equals("accessories"))
-			  {  
-					if(!request.getParameter("product").isEmpty())
-						{
-							prod = request.getParameter("product");
-							allconsoles = MySqlDataStoreUtilities.getConsoles();
-							if(allconsoles.containsKey(prod))
-							{
-								allaccessories = MySqlDataStoreUtilities.getAccessories();
-								if(allaccessories.containsKey(productId)){
-									msg = "Product already available";
-								}
-							}else{
-								msg = "The product related to accessories is not available";
-							}
+			//   }else if(producttype.equals("games"))
+			//   {
+			// 	  allgames = MySqlDataStoreUtilities.getGames();
+			// 	  if(allgames.containsKey(productId)){
+			// 		  msg = "Product already available";
+			// 	  }
+			//   }else if (producttype.equals("tablets"))
+			//   {
+			// 	  alltablets = MySqlDataStoreUtilities.getTablets();
+			// 	  if(alltablets.containsKey(productId)){
+			// 		  msg = "Product already available";
+			// 	  }
+			//   }else if (producttype.equals("accessories"))
+			//   {  
+			// 		if(!request.getParameter("product").isEmpty())
+			// 			{
+			// 				prod = request.getParameter("product");
+			// 				allconsoles = MySqlDataStoreUtilities.getConsoles();
+			// 				if(allconsoles.containsKey(prod))
+			// 				{
+			// 					allaccessories = MySqlDataStoreUtilities.getAccessories();
+			// 					if(allaccessories.containsKey(productId)){
+			// 						msg = "Product already available";
+			// 					}
+			// 				}else{
+			// 					msg = "The product related to accessories is not available";
+			// 				}
 						
 						
-						}else{
-							msg = "Please add the prodcut name";
-						}
+			// 			}else{
+			// 				msg = "Please add the prodcut name";
+			// 			}
 				  
-			  }	
+			//   }	
+			  if (msg.equals("good"))
+			  {  
+				  System.out.println(" msg.equals"+productName);
+				  try
+				  {
+					  msg = MySqlDataStoreUtilities.addRoute(productId,productName);
+				  }
+				  catch(Exception e)
+				  { 
+					msg = "Route cannot be inserted";
+				  }
+				  msg = "Route has been successfully added";
+			  }					
+			}
+			else if(action.equals("Add Stop"))
+			{
+				msg = "good";
+			
 			  if (msg.equals("good"))
 			  {  
 				  try
 				  {
-					  msg = MySqlDataStoreUtilities.addproducts(producttype,productId,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount,prod);
+					  msg = MySqlDataStoreUtilities.addStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
 				  }
 				  catch(Exception e)
 				  { 
-					msg = "Product cannot be inserted";
+					msg = "Stop cannot be inserted";
 				  }
-				  msg = "Product has been successfully added";
+				  msg = "Stop has been successfully added";
 			  }					
-			}else if(action.equals("update"))
+			}
+			else if(action.equals("Update Route"))
 			{
-				
-			  if(producttype.equals("consoles")){
-				  allconsoles = MySqlDataStoreUtilities.getConsoles();
-				  if(!allconsoles.containsKey(productId)){
-					  msg = "Product not available";
-				  }
+				msg = "good";
+			//   if(producttype.equals("consoles")){
+			// 	  allconsoles = MySqlDataStoreUtilities.getConsoles();
+			// 	  if(!allconsoles.containsKey(productId)){
+			// 		  msg = "Product not available";
+			// 	  }
 					  
-			  }else if(producttype.equals("games"))
-			  {
-				  allgames = MySqlDataStoreUtilities.getGames();
-				  if(!allgames.containsKey(productId)){
-					  msg = "Product not available";
-				  }
-			  }else if (producttype.equals("tablets"))
-			  {
-				  alltablets = MySqlDataStoreUtilities.getTablets();
-				  if(!alltablets.containsKey(productId)){
-					  msg = "Product not available";
-				  }
-			  }else if (producttype.equals("accessories"))
-			  {
-				  allaccessories = MySqlDataStoreUtilities.getAccessories();
-				  if(!allaccessories.containsKey(productId)){
-					  msg = "Product not available";
-				}
-			  }	
+			//   }else if(producttype.equals("games"))
+			//   {
+			// 	  allgames = MySqlDataStoreUtilities.getGames();
+			// 	  if(!allgames.containsKey(productId)){
+			// 		  msg = "Product not available";
+			// 	  }
+			//   }else if (producttype.equals("tablets"))
+			//   {
+			// 	  alltablets = MySqlDataStoreUtilities.getTablets();
+			// 	  if(!alltablets.containsKey(productId)){
+			// 		  msg = "Product not available";
+			// 	  }
+			//   }else if (producttype.equals("accessories"))
+			//   {
+			// 	  allaccessories = MySqlDataStoreUtilities.getAccessories();
+			// 	  if(!allaccessories.containsKey(productId)){
+			// 		  msg = "Product not available";
+			// 	}
+			//   }	
 			  if (msg.equals("good"))
 			  {		
 				
 				  try
 				  {
-					msg = MySqlDataStoreUtilities.updateproducts(producttype,productId,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount);
+					msg = MySqlDataStoreUtilities.updateRoute(productId,productName);
 				  }
 				  catch(Exception e)
 				  { 
-					msg = "Product cannot be updated";
+					msg = "Route cannot be updated";
 				  }
-				  msg = "Product has been successfully updated";
+				  msg = "Route has been successfully updated";
 			  } 
-			}else if(action.equals("delete"))
+			}
+			else if(action.equals("Update Stop"))
 			{
-				  msg = "bad";
-				  allconsoles = MySqlDataStoreUtilities.getConsoles();
-				  if(allconsoles.containsKey(productId)){
-					  msg = "good";
+				msg = "good";
+			  if (msg.equals("good"))
+			  {		
+				
+				  try
+				  {
+					msg = MySqlDataStoreUtilities.updateStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
+				  }
+				  catch(Exception e)
+				  { 
+					msg = "Stop cannot be updated";
+				  }
+				  msg = "Stop has been successfully updated";
+			  } 
+			}
+			else if(action.equals("Delete Route"))
+			{
+				  msg = "good";
+				//   allconsoles = MySqlDataStoreUtilities.getConsoles();
+				//   if(allconsoles.containsKey(productId)){
+				// 	  msg = "good";
 					  
-				  }
+				//   }
 					  
 			  
-				  allgames = MySqlDataStoreUtilities.getGames();
-				  if(allgames.containsKey(productId)){
-					  msg = "good";
-				  }
+				//   allgames = MySqlDataStoreUtilities.getGames();
+				//   if(allgames.containsKey(productId)){
+				// 	  msg = "good";
+				//   }
 			  
-				  alltablets = MySqlDataStoreUtilities.getTablets();
-				  if(alltablets.containsKey(productId)){
-					  msg = "good";
-				  }
+				//   alltablets = MySqlDataStoreUtilities.getTablets();
+				//   if(alltablets.containsKey(productId)){
+				// 	  msg = "good";
+				//   }
 			  
-				  allaccessories = MySqlDataStoreUtilities.getAccessories();
-				  if(allaccessories.containsKey(productId)){
-					  msg = "good";
-				}
+				//   allaccessories = MySqlDataStoreUtilities.getAccessories();
+				//   if(allaccessories.containsKey(productId)){
+				// 	  msg = "good";
+				// }
 		       		
 				  if (msg.equals("good"))
 				  {		
@@ -170,18 +221,37 @@ public class ProductCrud extends HttpServlet {
 					  try
 					  {  
 						
-						 msg = MySqlDataStoreUtilities.deleteproducts(productId);
+						 msg = MySqlDataStoreUtilities.deleteRoute(productId);
 					  }
 					  catch(Exception e)
 					  { 
-						msg = "Product cannot be deleted";
+						msg = "Route cannot be deleted";
 					  }
-					   msg = "Product has been successfully deleted";
+					   msg = "Route has been successfully deleted";
 				  }else{
-					  msg = "Product not available";
+					  msg = "Route not available";
 				  }
 			}	
-				
+			else if(action.equals("Delete Stop"))
+			{
+				  msg = "good";
+				  if (msg.equals("good"))
+				  {		
+					
+					  try
+					  {  
+						
+						 msg = MySqlDataStoreUtilities.deleteStop(productId);
+					  }
+					  catch(Exception e)
+					  { 
+						msg = "Stop cannot be deleted";
+					  }
+					   msg = "Stop has been successfully deleted";
+				  }else{
+					  msg = "Stop not available";
+				  }
+			}	
 			pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 			pw.print("<a style='font-size: 24px;'>Order</a>");
 			pw.print("</h2><div class='entry'>");

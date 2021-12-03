@@ -267,76 +267,127 @@ public static HashMap<String,Accessory> getAccessories()
 	return hm;			
 }
 
-public static String addproducts(String producttype,String productId,String productName,double productPrice,String productImage,String productManufacturer,String productCondition,double productDiscount,String prod)
+public static String addRoute(String productId,String productName)
 {
-	String msg = "Product is added successfully";
+	String msg = "Route is added successfully";
 	try{
 		
 		getConnection();
-		String addProductQurey = "INSERT INTO  Productdetails(ProductType,Id,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount)" +
-		"VALUES (?,?,?,?,?,?,?,?);";
+		String addProductQurey = "INSERT INTO  Routes(routeNumber,routeColour,routeName)" +
+		"VALUES (?,?,?);";
 		   
-			String name = producttype;
-	        			
+			// String name = producttype;
+	        			System.out.println( "product" + productName);
 			PreparedStatement pst = conn.prepareStatement(addProductQurey);
-			pst.setString(1,name);
-			pst.setString(2,productId);
+			// pst.setString(1,name);
+			pst.setString(1,productId);
+			pst.setString(2,"#66cc66");
 			pst.setString(3,productName);
-			pst.setDouble(4,productPrice);
-			pst.setString(5,productImage);
-			pst.setString(6,productManufacturer);
-			pst.setString(7,productCondition);
-			pst.setDouble(8,productDiscount);
+			// pst.setString(5,productImage);
+			// pst.setString(6,productManufacturer);
+			// pst.setString(7,productCondition);
+			// pst.setDouble(8,productDiscount);
 			
 			pst.executeUpdate();
-			try{
-				if (!prod.isEmpty())
-				{
-					String addaprodacc =  "INSERT INTO  Product_accessories(productName,accessoriesName)" +
-					"VALUES (?,?);";
-					PreparedStatement pst1 = conn.prepareStatement(addaprodacc);
-					pst1.setString(1,prod);
-					pst1.setString(2,productId);
-					pst1.executeUpdate();
+			// try{
+			// 	if (!prod.isEmpty())
+			// 	{
+			// 		String addaprodacc =  "INSERT INTO  Product_accessories(productName,accessoriesName)" +
+			// 		"VALUES (?,?);";
+			// 		PreparedStatement pst1 = conn.prepareStatement(addaprodacc);
+			// 		pst1.setString(1,prod);
+			// 		pst1.setString(2,productId);
+			// 		pst1.executeUpdate();
 					
-				}
-			}catch(Exception e)
-			{
-				msg = "Erro while adding the product";
-				e.printStackTrace();
+			// 	}
+			// }catch(Exception e)
+			// {
+			// 	msg = "Erro while adding the product";
+			// 	e.printStackTrace();
 		
-			}
-			
-			
-		
+			// }
 	}
 	catch(Exception e)
 	{
-		msg = "Erro while adding the product";
+		msg = "Erro while adding the Route";
 		e.printStackTrace();
 		
 	}
 	return msg;
 }
-public static String updateproducts(String producttype,String productId,String productName,double productPrice,String productImage,String productManufacturer,String productCondition,double productDiscount)
-{ 
-    String msg = "Product is updated successfully";
+public static String addStop(String productId,String productName,String busRouteDirection,String stopId,String stopName,String stoplat,String stoplon)
+{
+	String msg = "Stop is added successfully";
 	try{
 		
 		getConnection();
-		String updateProductQurey = "UPDATE Productdetails SET productName=?,productPrice=?,productImage=?,productManufacturer=?,productCondition=?,productDiscount=? where Id =?;" ;
+		String addProductQurey = "INSERT INTO  Stops(routeNumber,routeColour,routeName,busRouteDirection,stopId,stopName,stoplat,stoplon)" +
+		"VALUES (?,?,?,?,?,?,?,?);";
+		   
+			// String name = producttype;
+	        			
+			PreparedStatement pst = conn.prepareStatement(addProductQurey);
+			// pst.setString(1,name);
+			pst.setString(1,productId);
+			pst.setString(2,"#cc3366");
+			pst.setString(3,productName);
+			pst.setString(4,busRouteDirection);
+			pst.setString(5,stopId);
+			pst.setString(6,stopName);
+			pst.setString(7,stoplat);
+			pst.setString(8,stoplon);
+			// pst.setString(5,productImage);
+			// pst.setString(6,productManufacturer);
+			// pst.setString(7,productCondition);
+			// pst.setDouble(8,productDiscount);
+			
+			pst.executeUpdate();
+			// try{
+			// 	if (!prod.isEmpty())
+			// 	{
+			// 		String addaprodacc =  "INSERT INTO  Product_accessories(productName,accessoriesName)" +
+			// 		"VALUES (?,?);";
+			// 		PreparedStatement pst1 = conn.prepareStatement(addaprodacc);
+			// 		pst1.setString(1,prod);
+			// 		pst1.setString(2,productId);
+			// 		pst1.executeUpdate();
+					
+			// 	}
+			// }catch(Exception e)
+			// {
+			// 	msg = "Erro while adding the product";
+			// 	e.printStackTrace();
+		
+			// }
+	}
+	catch(Exception e)
+	{
+		msg = "Erro while adding the Stop";
+		e.printStackTrace();
+		
+	}
+	return msg;
+}
+public static String updateRoute(String productId,String productName)
+{ 
+    String msg = "Route is updated successfully";
+	try{
+		
+		getConnection();
+		String updateProductQurey = "UPDATE Routes SET routeNumber=?,routeColour=?,routeName=? where routeNumber=?;" ;
 		
 		   
 				        			
 			PreparedStatement pst = conn.prepareStatement(updateProductQurey);
 			
-			pst.setString(1,productName);
-			pst.setDouble(2,productPrice);
-			pst.setString(3,productImage);
-			pst.setString(4,productManufacturer);
-			pst.setString(5,productCondition);
-			pst.setDouble(6,productDiscount);
-			pst.setString(7,productId);
+			pst.setString(1,productId);
+			pst.setString(2,"#66cc66");
+			pst.setString(3,productName);
+			pst.setString(4,productId);
+			// pst.setString(4,productManufacturer);
+			// pst.setString(5,productCondition);
+			// pst.setDouble(6,productDiscount);
+			// pst.setString(7,productId);
 			pst.executeUpdate();
 			
 			
@@ -344,19 +395,58 @@ public static String updateproducts(String producttype,String productId,String p
 	}
 	catch(Exception e)
 	{
-		msg = "Product cannot be updated";
+		msg = "Route cannot be updated";
 		e.printStackTrace();
 		
 	}
  return msg;	
 }
-public static String deleteproducts(String productId)
+public static String updateStop(String productId,String productName,String busRouteDirection,String stopId,String stopName,String stoplat,String stoplon)
+{ 
+    String msg = "Stop is updated successfully";
+	try{
+		
+		getConnection();
+		String updateProductQurey = "UPDATE Stops SET routeNumber=?,routeColour=?,routeName=?,busRouteDirection=?,stopId=?,stopName=?,stoplat=?,stoplon=? where stopId=? and busRouteDirection=?;" ;
+		
+		   
+				        			
+			PreparedStatement pst = conn.prepareStatement(updateProductQurey);
+			
+			pst.setString(1,productId);
+			pst.setString(2,"#66cc66");
+			pst.setString(3,productName);
+			pst.setString(4,busRouteDirection);
+			pst.setString(5,stopId);
+			pst.setString(6,stopName);
+			pst.setString(7,stoplat);
+			pst.setString(8,stoplon);
+			pst.setString(9,stopId);
+			pst.setString(10,busRouteDirection);
+			// pst.setString(4,productManufacturer);
+			// pst.setString(5,productCondition);
+			// pst.setDouble(6,productDiscount);
+			// pst.setString(7,productId);
+			pst.executeUpdate();
+			
+			
+		
+	}
+	catch(Exception e)
+	{
+		msg = "Stop cannot be updated";
+		e.printStackTrace();
+		
+	}
+ return msg;	
+}
+public static String deleteRoute(String productId)
 {   String msg = "Product is deleted successfully";
 	try
 	{
 		
 		getConnection();
-		String deleteproductsQuery ="Delete from Productdetails where Id=?";
+		String deleteproductsQuery ="Delete from Routes where routeNumber=?";
 		PreparedStatement pst = conn.prepareStatement(deleteproductsQuery);
 		pst.setString(1,productId);
 		
@@ -368,7 +458,24 @@ public static String deleteproducts(String productId)
 	}
 	return msg;
 }
-
+public static String deleteStop(String productId)
+{   String msg = "Product is deleted successfully";
+	try
+	{
+		
+		getConnection();
+		String deleteproductsQuery ="Delete from Stops where stopId=?";
+		PreparedStatement pst = conn.prepareStatement(deleteproductsQuery);
+		pst.setString(1,productId);
+		
+		pst.executeUpdate();
+	}
+	catch(Exception e)
+	{
+			msg = "Proudct cannot be deleted";
+	}
+	return msg;
+}
 public static void deleteOrder(int orderId,String orderName)
 {
 	try
