@@ -268,7 +268,7 @@ public class Utilities extends HttpServlet{
 			OrderItem orderitem = new OrderItem(name+" - " +acc, 7, "", acc);
 			orderItems.add(orderitem);
 		}
-		if(type.equals("tablets")){
+		if(type.equals("Reco")){
 			Tablet tablet = null;
 			try{
 			alltablets = MySqlDataStoreUtilities.getTablets();
@@ -277,7 +277,7 @@ public class Utilities extends HttpServlet{
 				
 			}
 			tablet = alltablets.get(name);
-			OrderItem orderitem = new OrderItem(tablet.getName(), tablet.getPrice(), tablet.getImage(), tablet.getRetailer());
+			OrderItem orderitem = new OrderItem(name, 5.00, "" , "tablet.getRetailer()");
 			orderItems.add(orderitem);
 		}
 		if(type.equals("accessories")){	

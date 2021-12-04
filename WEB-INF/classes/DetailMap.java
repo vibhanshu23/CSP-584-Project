@@ -47,17 +47,17 @@ public class DetailMap extends HttpServlet {
         pw.print("<h2 class='title meta'><a style='font-size: 24px;'>Stops of Route number: "+RouteNumber+"</a></h2>"
         + "<div class='entry'>");
         
-        pw.println("<div id='map' style='width: 900px; height: 900px;'>");
+        pw.println("<div id='map' style='width: 900px; height: 900px;margin-left: 200px;'>");
         pw.println("</div>");
         pw.println("<script type='text/javascript' src='DetailMap.js'></script>");
         
         
         
         
-        
+        // pw.println("<div id='select' style='width: 900px; height: 30px;'>");
         // System.out.println("----------bus info----------");
         pw.print("<form method='get' action='DetailMapPrediction'>"
-        + "<table style='width:100%'><tr><td><input type='hidden' name='rt' value="+RouteNumber+">"
+        + "<table style='width:900px; margin-left: 200px;'><tr><td><input type='hidden' name='rt' value="+RouteNumber+">"
         + "<select name='Stop Name' class='input'>");
         for(CTABusObject obj1:arrCTABusTemp){
             // System.out.println(obj1.getstopName());
@@ -72,7 +72,7 @@ public class DetailMap extends HttpServlet {
             
         }
         pw.print("</select>"
-        + "<input type='submit' class='btnbuy' value='Get Predictions' style='float: right;height: 20px margin: 20px; margin-right: 10px;'></input>"
+        + "<input type='submit' class='btnbuy' value='Get Predictions' style='float: right;height: 20px margin: 20px; margin-right: 350px;'></input>"
         + "</td></tr><tr><td></td><td></table>"
         + "</form>");
         pw.println("</div></div></div>");

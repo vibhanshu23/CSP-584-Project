@@ -47,7 +47,7 @@ public class CTAUIViewTrainStops extends HttpServlet {
 			if(i%3==1) pw.print("<tr>");
 			pw.print("<td><div id='shop_item'>");
 			pw.print("<h3>"+model+" Line</h3>");
-			// pw.print("<strong>"+ "Enter secondary text" + "</strong><ul>");
+			pw.print("<ul>");
 			pw.print("<li id='item'><img src='images/games/CTATrain.jpeg' alt='' /></li>");
 			pw.print("<li><form method='get' id='locationForm' action='CTAUIViewTrainLines'>" +
 					"<input type='hidden' name='name' value='"+model+"'>"+

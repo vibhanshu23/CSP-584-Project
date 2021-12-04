@@ -27,22 +27,22 @@ public class Carousel{
 				
 		ProductRecommenderUtility prodRecUtility = new ProductRecommenderUtility();
 		
-		HashMap<String, Console> hm = new HashMap<String, Console>();
+		// HashMap<String, Console> hm = new HashMap<String, Console>();
 		StringBuilder sb = new StringBuilder();
 		String myCarousel = null;
 			
 		String name = null;
-		String CategoryName = null;
-		if(CategoryName==null){
-			try{
-			hm=MySqlDataStoreUtilities.getConsoles();
-			name = "";
-			}catch(Exception e)
-			{
+		// String CategoryName = null;
+		// if(CategoryName==null){
+		// 	try{
+		// 	hm=MySqlDataStoreUtilities.getConsoles();
+		// 	name = "";
+		// 	}catch(Exception e)
+		// 	{
 				
-			}
+		// 	}
 			
-		}
+		// }
 		HashMap<String,String> prodRecmMap = new HashMap<String,String>();
 		prodRecmMap = prodRecUtility.readOutputFile();
 		
@@ -51,6 +51,7 @@ public class Carousel{
 		int l =0;
 		for(String user: prodRecmMap.keySet())
 		{
+			System.out.println(user + "username" + utility.username());
 			if(user.equals(utility.username()))
 			{
 				String products = prodRecmMap.get(user);
@@ -89,33 +90,33 @@ public class Carousel{
 					if (k==0 )
 					{
 						
-						sb.append("<div class='item active'><div class='col-md-6' style = 'background-color: #58acfa;border :1px solid #cfd1d3'>");
+						sb.append("<div class='item active'><div class='col-md-6' style = 'background-color: #d7d7d7;border :1px solid #cfd1d3'>");
 					}
 					else
 					{
-						sb.append("<div class='item'><div class='col-md-6' style = 'background-color: #58acfa ;border :1px solid #cfd1d3' >");
+						sb.append("<div class='item'><div class='col-md-6' style = 'background-color: #d7d7d7 ;border :1px solid #cfd1d3' >");
 					}
 					sb.append("<div id='shop_item'>");
-					sb.append("<h3>"+prodObj.getName()+"</h3>");
-					sb.append("<strong>"+prodObj.getPrice()+"$</strong><ul>");
-					sb.append("<li id='item'><img src='images/"+prodObj.getType()+"/"+prodObj.getImage()+"' alt='' /></li>");
+					sb.append("<h3>"+prod.trim()+"</h3>");
+					sb.append("<strong>$"+5.00+"</strong><ul>");
+					sb.append("<li id='item'><img src='images/consoles/consoles.png' alt='' /></li>");
 					sb.append("<li><form method='post' action='Cart'>" +
 							"<input type='hidden' name='name' value='"+prod.trim()+"'>"+
-							"<input type='hidden' name='type' value='"+prodObj.getType()+"'>"+
+							"<input type='hidden' name='type' value='"+"Reco"+"'>"+
 							"<input type='hidden' name='maker' value='"+prodObj.getRetailer()+"'>"+
 							"<input type='hidden' name='access' value='"+" "+"'>"+
-							"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
-					sb.append("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+prodObj.getName()+"'>"+
-							"<input type='hidden' name='type' value='"+prodObj.getType()+"'>"+
-							"<input type='hidden' name='maker' value='"+prodObj.getRetailer()+"'>"+
-							"<input type='hidden' name='access' value='"+" "+"'>"+
-							"<input type='hidden' name='price' value='"+prodObj.getPrice()+"'>"+
-							"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
-					sb.append("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+prodObj.getName()+"'>"+
-							"<input type='hidden' name='type' value='"+prodObj.getType()+"'>"+
-							"<input type='hidden' name='maker' value='"+prodObj.getRetailer()+"'>"+
-							"<input type='hidden' name='access' value='"+" "+"'>"+
-							"<input type='submit' value='ViewReview' class='btnreview'></form></li>");
+							"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
+					// sb.append("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+prodObj.getName()+"'>"+
+					// 		"<input type='hidden' name='type' value='"+prodObj.getType()+"'>"+
+					// 		"<input type='hidden' name='maker' value='"+prodObj.getRetailer()+"'>"+
+					// 		"<input type='hidden' name='access' value='"+" "+"'>"+
+					// 		"<input type='hidden' name='price' value='"+prodObj.getPrice()+"'>"+
+					// 		"<input type='submit' value='WriteReview' class='btnreview'></form></li>");
+					// sb.append("<li><form method='post' action='ViewReview'>"+"<input type='hidden' name='name' value='"+prodObj.getName()+"'>"+
+					// 		"<input type='hidden' name='type' value='"+prodObj.getType()+"'>"+
+					// 		"<input type='hidden' name='maker' value='"+prodObj.getRetailer()+"'>"+
+					// 		"<input type='hidden' name='access' value='"+" "+"'>"+
+					// 		"<input type='submit' value='ViewReview' class='btnreview'></form></li>");
 
 					sb.append("</ul></div></div>");
 					sb.append("</div>");

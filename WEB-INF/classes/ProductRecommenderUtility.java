@@ -39,7 +39,7 @@ public class ProductRecommenderUtility{
 		HashMap<String,String> prodRecmMap = new HashMap<String,String>();
 		try {
 
-            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"/webapps/Project/matrixFactorizationBasedRecommendations.csv")));
+            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"/webapps/EWA/matrixFactorizationBasedRecommendations.csv")));
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator
@@ -60,7 +60,7 @@ public class ProductRecommenderUtility{
                 }
             }
 		}
-		
+		System.out.println("Product Hashmap reco "+ prodRecmMap);
 		return prodRecmMap;
 	}
 	
@@ -68,15 +68,16 @@ public class ProductRecommenderUtility{
 		Product prodObj = new Product();
 		try 
 		{
+			System.out.println("ID Product Recommender "+product);
 			String msg = getConnection();
-			String selectProd="select * from  Productdetails where Id=?";
+			String selectProd="select * from  Route where routeName=?";
 			PreparedStatement pst = conn.prepareStatement(selectProd);
 			pst.setString(1,product);
 			ResultSet rs = pst.executeQuery();
 		
 			while(rs.next())
 			{	
-				prodObj = new Product(rs.getString("Id"),rs.getString("productName"),rs.getDouble("productPrice"),rs.getString("productImage"),rs.getString("productManufacturer"),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
+				prodObj = new Product(rs.getString("routeNumber"),product,5.00,"","","","",0);//"rs.getString("productManufacturer")","rs.getString("productCondition")","rs.getString(ProductType)","rs.getDouble(productDiscount)");
 			}
 			rs.close();
 			pst.close();
