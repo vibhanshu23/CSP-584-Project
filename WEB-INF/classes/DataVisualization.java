@@ -58,6 +58,8 @@ public class DataVisualization extends HttpServlet {
 
         try {
             ArrayList<Review> reviews = MongoDBDataStoreUtilities.selectReviewForChart();
+            System.out.println("*************review Count" + reviews.size());
+
             ArrayList<Review> topReviewsPerCity = getTop3InEveryCity(reviews);
             
             String reviewJson = new Gson().toJson(topReviewsPerCity);
@@ -88,9 +90,14 @@ public class DataVisualization extends HttpServlet {
        ArrayList<String> zipCodeList = new ArrayList<>();
        for(Review review:reviewList){
             String zipCode = review.getRetailerPin();
-            if(!(zipCodeList.contains(zipCode))){
-                zipCodeList.add(zipCode);
+            if(zipCode != null){
+                System.out.println("*************ljsdnalksjdlaksjdlaksjdalksdjalksdj" + review.getProductMaker());
+                System.out.println("ljsdnalksjdlaksjdlaksjdalksdjalksdj" + review.getRetailerCity());
+                if(!(zipCodeList.contains(zipCode))){
+                    zipCodeList.add(zipCode);
+                }
             }
+            
        } 
 
        //get top 3 reviews for every city;
@@ -98,9 +105,11 @@ public class DataVisualization extends HttpServlet {
        for(String zipCode:zipCodeList){
             ArrayList<Review> top3ReviewsCity = new ArrayList<>();
             for(Review review:reviewList){
+                if(review.getRetailerPin() != null){
                 if(review.getRetailerPin().equals(zipCode) && top3ReviewsCity.size()<4){
                     top3ReviewsCity.add(review);
                 }
+            }
             }
             top3Reviews.addAll(top3ReviewsCity); 
        }
