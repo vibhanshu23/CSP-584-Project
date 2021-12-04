@@ -84,14 +84,14 @@ public class ViewReview extends HttpServlet {
 						pw.print("<td>" +productName+ "</td>");
 						pw.print("</tr>");
 						pw.print("<tr>");
-						pw.print("<td> userName: </td>");
+						pw.print("<td> Username: </td>");
 						userName = r.getUserName();
 						pw.print("<td>" +userName+ "</td>");
 						pw.print("</tr>");
 						pw.print("<tr>");
-						pw.print("<td> price: </td>");
+						pw.print("<td> Price: </td>");
 						price = r.getPrice();
-						pw.print("<td>" +price+ "</td>");
+						pw.print("<td>$ " +price+ "</td>");
 						pw.print("</tr>");
 						pw.print("<tr>");
 						pw.print("<td> Customer Experience: </td>");

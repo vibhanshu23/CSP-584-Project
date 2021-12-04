@@ -29,13 +29,13 @@ public class FindReviews extends HttpServlet {
 		}
 		
 			String productName = request.getParameter("productName");
-			int productPrice = Integer.parseInt(request.getParameter("productPrice"));
+			String productPrice = request.getParameter("productPrice");
  //           String productPrice = request.getParameter("productPrice"); 	
-        	int reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
+        	int reviewRating = Integer.parseInt(request.getParameter("reviewRating"));//rating
 			String compareRating = request.getParameter("compareRating");
 			String comparePrice = request.getParameter("comparePrice");
-			String retailerCity = request.getParameter("retailerCity");
-			String retailerZipcode = request.getParameter("retailerZipcode");
+			String retailerCity = request.getParameter("retailerCity");//experience
+			String retailerZipcode = request.getParameter("retailerZipcode");//ontime
 			
 			String[] filters = request.getParameterValues("queryCheckBox");
 			String[] extraSettings = request.getParameterValues("extraSettings");
@@ -89,7 +89,7 @@ public class FindReviews extends HttpServlet {
 				}				
 			}	
 			
-			
+			System.out.println(filters);
 			if(filters != null && groupBy != true){
 				for (int i = 0; i < filters.length; i++) {
 					//Check what all filters are ON
@@ -97,8 +97,10 @@ public class FindReviews extends HttpServlet {
 					switch (filters[i]){										
 						case "productName":							
 							filterByProduct = true;
+							System.out.println("*************** inside if prod name " + productName);
 							if(!productName.equals("ALL_PRODUCTS")){
-								query.put("productName", productName);
+								System.out.println("*************** inside if prod name " + productName);
+								query.put("productName", "King Drive");
 							}						
 							break;
 												
@@ -116,12 +118,14 @@ public class FindReviews extends HttpServlet {
 						
 						case "retailerZipcode":
 							filterByZip = true;	
-							System.out.println("inside if");
+							System.out.println("*************** inside if" + retailerZipcode);
 							query.put("retailerpin", retailerZipcode);
 							break;					
 						
 						case "retailerCity": 
 							filterByCity = true;
+							System.out.println("*************** inside if" + retailerCity);
+
 							if(!retailerCity.equals("All") && !groupByCity){
 								query.put("retailercity", retailerCity);
 							}							
@@ -309,14 +313,6 @@ public class FindReviews extends HttpServlet {
 			   
 			while (dbCursor.hasNext()) {		
 			BasicDBObject bobj = (BasicDBObject) dbCursor.next();
-			String str = "";
-			if(bobj.getString("retailerpin").equals("1")){
-				str = "Yes";
-			}
-			else{
-				str = "No";
-
-			}
 
 			tableData =   "<tr><td align='center' colspan='2'>Review</td></tr><tr><td>Name: </td><td>" + bobj.getString("productName") + "</td></tr>"
 						+ "<tr><td>Rating:</td><td>" + bobj.getString("reviewRating") + "</td></tr>"
@@ -324,7 +320,7 @@ public class FindReviews extends HttpServlet {
 						+ "<tr><td>Customer Experience:</td><td>" + bobj.getString("retailercity") + "</td></tr>"
 						+ "<tr><td>Date:</td><td>" + bobj.getString("reviewDate") + "</td></tr>"
 						+ "<tr><td>Review Text:</td><td>" + bobj.getString("reviewText")+"</td><tr>"
-						+ "<tr><td>On Time:</td><td>" +str +"</td><tr>";
+						+ "<tr><td>On Time:</td><td>" +bobj.getString("retailerpin") +"</td><tr>";
 
 				
 				 pw.print(tableData);

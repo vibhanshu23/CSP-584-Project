@@ -20,7 +20,8 @@ function callPostForNearestData() {
       {
         console.log('lat' + dataArray[i]["location"]["coordinates"][0]);
         console.log('long' + dataArray[i]["location"]["coordinates"][1]);
-        var some = parseFloat((dataArray[i]["distance"]));
+        var some = (dataArray[i]["station_name"]);
+        console.log('Marker Name' + dataArray[i]["location"]["coordinates"][1]);
         locations.push([some, dataArray[i]["location"]["coordinates"][1], dataArray[i]["location"]["coordinates"][0], i+1]);
         // locations.push([dataArray[i]["stop_name"], dataArray[i]["location"]["coordinates"][1], dataArray[i]["location"]["coordinates"][0], i+1]);
       }

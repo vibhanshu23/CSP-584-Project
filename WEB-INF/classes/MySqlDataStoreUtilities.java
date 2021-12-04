@@ -500,8 +500,8 @@ public static void insertOrder(int orderId,String userName,String orderName,doub
 	{
 	
 		getConnection();
-		
-		String insertIntoCustomerOrderQuery = "INSERT INTO customerOrders(OrderId,UserName,OrderName,OrderPrice,userAddress,creditCardNo) "
+		System.out.println("-------"+ userAddress);
+		String insertIntoCustomerOrderQuery = "INSERT INTO customerOrders(OrderId,UserName,OrderName,OrderPrice,customerName,creditCardNo) "
 		+ "VALUES (?,?,?,?,?,?);";	
 			
 		PreparedStatement pst = conn.prepareStatement(insertIntoCustomerOrderQuery);
@@ -516,7 +516,7 @@ public static void insertOrder(int orderId,String userName,String orderName,doub
 	}
 	catch(Exception e)
 	{
-	
+		System.out.println("exception "+ e.getLocalizedMessage());
 	}		
 }
 
@@ -545,7 +545,7 @@ public static HashMap<Integer, ArrayList<OrderPayment>> selectOrder()
 			
 
 			//add to orderpayment hashmap
-			OrderPayment order= new OrderPayment(rs.getInt("OrderId"),rs.getString("userName"),rs.getString("orderName"),rs.getDouble("orderPrice"),rs.getString("userAddress"),rs.getString("creditCardNo"));
+			OrderPayment order= new OrderPayment(rs.getInt("OrderId"),rs.getString("userName"),rs.getString("orderName"),rs.getDouble("orderPrice"),rs.getString("customerName"),rs.getString("creditCardNo"));
 			listOrderPayment.add(order);
 					
 		}

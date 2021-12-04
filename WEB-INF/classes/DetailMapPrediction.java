@@ -2,11 +2,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,6 +30,11 @@ import java.io.*;
 import java.net.*;
 import com.google.gson.Gson;
 import com.mongodb.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+// import java.time.format;
+import java.util.concurrent.TimeUnit;
+
 
 @WebServlet("/DetailMapPrediction")
 public class DetailMapPrediction extends HttpServlet {
@@ -110,12 +118,36 @@ public class DetailMapPrediction extends HttpServlet {
             int i = middle.getPrd().indexOf(obj)+1;
             
             if(i%3==1) pw.print("<tr>");
+            
+            try {
+                
+            
+            SimpleDateFormat DateFor = new SimpleDateFormat("YYYYMMDD HH:mm");
+            DateFor.setTimeZone(TimeZone.getTimeZone("CST"));
+            Date date = DateFor.parse(obj.getPrdtm());
+            System.out.println("Date : "+date);
+            SimpleDateFormat DateForNew = new SimpleDateFormat("HH:mm");
+
+
+        
+
+
+            // long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
+
+            pw.print("<td><div id='shop_item'>");
+            pw.print("<h3>"+"Predicted at "+DateForNew.format(date)+"   </h3>");
+            pw.print("<h3>"+"At Stop: "+obj.getStpnm()+"   </h3>");
+            if(i%3==0 || i == middle.getPrd().size()-1) pw.print("</tr>");
+            i++;
+            pw.println("</div>");
+        } catch (Exception e) {
             pw.print("<td><div id='shop_item'>");
             pw.print("<h3>"+"Predicted at "+obj.getPrdtm()+"   </h3>");
             pw.print("<h3>"+"At Stop: "+obj.getStpnm()+"   </h3>");
             if(i%3==0 || i == middle.getPrd().size()-1) pw.print("</tr>");
             i++;
             pw.println("</div>");
+        }
             
         }	
         pw.print("</table>");		

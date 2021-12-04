@@ -10,6 +10,7 @@ $("#btnGetChartData").click(function () {
         type: "POST",
         data: "{}",
         success: function (msg) {
+            console.log("array    "+msg)
             createDataTable(msg)            
         },
         error: function(){
@@ -90,7 +91,7 @@ function drawChart(data, productNameArr) {
      var chartData = google.visualization.arrayToDataTable(data);
 
      var options = {
-        'width':600,
+        'width':800,
         'height':650,
           chart: {
             title: 'Trending Products Chart',

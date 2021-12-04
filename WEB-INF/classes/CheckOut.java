@@ -48,7 +48,7 @@ public class CheckOut extends HttpServlet {
         pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
 		pw.print("<a style='font-size: 24px;'>Order</a>");
 		pw.print("</h2><div class='entry'>");
-		pw.print("<table  class='gridtable'><tr><td>Customer Name:</td><td>");
+		pw.print("<table  class='gridtable'><tr><td>User Name :</td><td>");
 		pw.print(userName);
 		pw.print("</td></tr>");
 		// for each order iterate and display the order name price
@@ -71,7 +71,7 @@ public class CheckOut extends HttpServlet {
         pw.print("</td></tr>");
 		pw.print("<tr><td>");
      	pw.print("Credit/Debit Card No</td>");
-		pw.print("<td><input type='number' name='creditCardNo' required>");
+		pw.print("<td><input type='text' name='creditCardNo' required>");
 		pw.print("</td></tr>");
 		// pw.print("<tr><td>");
 	    // pw.print("Customer Address</td>");

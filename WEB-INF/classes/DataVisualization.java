@@ -98,7 +98,7 @@ public class DataVisualization extends HttpServlet {
        for(String zipCode:zipCodeList){
             ArrayList<Review> top3ReviewsCity = new ArrayList<>();
             for(Review review:reviewList){
-                if(review.getRetailerPin().equals(zipCode) && top3ReviewsCity.size()<3){
+                if(review.getRetailerPin().equals(zipCode) && top3ReviewsCity.size()<4){
                     top3ReviewsCity.add(review);
                 }
             }

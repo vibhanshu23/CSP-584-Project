@@ -2,11 +2,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -153,8 +155,17 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 					int i = midModel.arrDueTrains.indexOf(obj)+1;
 					
 					if(i%3==1) pw.print("<tr>");
+					
+					SimpleDateFormat DateFor = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss");
+            DateFor.setTimeZone(TimeZone.getTimeZone("CST"));
+            Date date = DateFor.parse(obj.getArrT());
+            System.out.println("Date : "+date);
+            SimpleDateFormat DateForNew = new SimpleDateFormat("HH:mm");
+
+            
+
 					pw.print("<td><div id='shop_item'>");
-					pw.print("<h3>"+"Due at "+obj.getArrT()+"   </h3>");
+					pw.print("<h3>"+"Due at "+DateForNew.format(date)+"   </h3>");
 					pw.print("<h3>"+"Station Name: "+obj.getStaNm()+"   </h3>");
 					if(i%3==0 || i == midModel.arrDueTrains.size()-1) pw.print("</tr>");
 					i++;
@@ -173,8 +184,15 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 					int i = midModel.arrScheduledTrains.indexOf(obj)+1;
 					
 					if(i%3==1) pw.print("<tr>");
+
+					SimpleDateFormat DateFor = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss");
+					DateFor.setTimeZone(TimeZone.getTimeZone("CST"));
+					Date date = DateFor.parse(obj.getArrT());
+					System.out.println("Date : "+date);
+					SimpleDateFormat DateForNew = new SimpleDateFormat("HH:mm");
+
 					pw.print("<td><div id='shop_item'>");
-					pw.print("<h3>"+"Due at "+obj.getArrT()+"   </h3>");
+					pw.print("<h3>"+"Scheduled at "+DateForNew.format(date)+"   </h3>");
 					pw.print("<h3>"+"Station Name: "+obj.getStaNm()+"   </h3>");
 					if(i%3==0 || i == midModel.arrScheduledTrains.size()-1) pw.print("</tr>");
 					i++;
@@ -254,8 +272,13 @@ public class CTAUIViewTrainArrivalOnMap extends HttpServlet {
 			for(CTAArrivalItem item:tmp){
 				System.out.println("----------getIsSch----------");
 				System.out.println(item.getIsSch());
-				
-				
+				SimpleDateFormat DateFor = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss");
+					DateFor.setTimeZone(TimeZone.getTimeZone("CST"));
+					Date date = DateFor.parse(item.getArrT());
+					System.out.println("Date : "+date);
+					SimpleDateFormat DateForNew = new SimpleDateFormat("HH:mm");
+					item.setDestNm("Due at " + DateForNew.format(date));
+
 				if(item.getLat() == null){
 					tmpScheduled.add(item);
 					

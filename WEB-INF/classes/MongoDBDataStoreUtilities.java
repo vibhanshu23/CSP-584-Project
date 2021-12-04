@@ -176,8 +176,9 @@ public class MongoDBDataStoreUtilities {
 			
 			getConnection();
 			Map<String, Object> dbObjIdMap = new HashMap<String, Object>();
-			dbObjIdMap.put("retailerpin", "$retailerpin");
+			dbObjIdMap.put("productMaker", "$retailerpin");
 			dbObjIdMap.put("productName", "$productName");
+			dbObjIdMap.put("productMaker", "$productMaker");
 			DBObject groupFields = new BasicDBObject("_id", new BasicDBObject(dbObjIdMap));
 			groupFields.put("count", new BasicDBObject("$sum", 1));
 			DBObject group = new BasicDBObject("$group", groupFields);
@@ -185,6 +186,7 @@ public class MongoDBDataStoreUtilities {
 			DBObject projectFields = new BasicDBObject("_id", 0);
 			projectFields.put("retailerpin", "$_id");
 			projectFields.put("productName", "$productName");
+			projectFields.put("productMaker", "$productMaker");
 			projectFields.put("reviewCount", "$count");
 			DBObject project = new BasicDBObject("$project", projectFields);
 			
@@ -201,10 +203,13 @@ public class MongoDBDataStoreUtilities {
 				BasicDBObject obj = (BasicDBObject) result;
 				Object o = com.mongodb.util.JSON.parse(obj.getString("retailerpin"));
 				BasicDBObject dbObj = (BasicDBObject) o;
-				Review review = new Review(dbObj.getString("productName"), dbObj.getString("retailerpin"),
-				obj.getString("reviewCount"), null);
+				Review review = new Review(dbObj.getString("productName"), dbObj.getString("productMaker"),obj.getString("reviewCount"), null);
 				reviewList.add(review);
-				
+				System.out.println("maker "+review.getProductMaker());
+				System.out.println("mongo maker "+dbObj.getString("productMaker"));
+				System.out.println("Product Name "+review.getProductName());
+				System.out.println("Product Name "+review.getRetailerPin());
+
 			}
 			return reviewList;
 			
@@ -514,7 +519,7 @@ public class MongoDBDataStoreUtilities {
 				// // if(!productId.equals("")){
 				// newDocument.append("$set", new BasicDBObject().append("stoplon", stoplon).append("stoplat", stoplat).append("stopName", stopName).append("stopId", stopId).append("busRouteDirection", busRouteDirection).append("productId", productId).append("productName", productName));
 
-				BasicDBObject searchQuery = new BasicDBObject().append("routeNumber", productId).append("busRouteDirection", busRouteDirection);
+				BasicDBObject searchQuery = new BasicDBObject().append("routeNumber", productId).append("busRouteDirection", busRouteDirection).append("stopId", stopId);
 				
 				BasicDBObject doc = new BasicDBObject("routeNumber", productId)
 				.append("routeColour", "#cc3366").append("routeName", productName)

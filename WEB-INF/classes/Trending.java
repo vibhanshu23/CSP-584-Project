@@ -35,7 +35,7 @@ public class Trending extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printHtml("LeftNavigationBar.html");
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Best Products</a>");
+		pw.print("<a style='font-size: 24px;'>Top 5 Reviewed Bus Routes or Train Lines</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		Iterator itr2 = bestrated.iterator();
         while(itr2.hasNext()) {
@@ -51,26 +51,26 @@ public class Trending extends HttpServlet {
         }
 		pw.print("</table></div></div></div>");	
 		
-		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Most Sold Products by On Time</a>");
-		pw.print("</h2><div class='entry'><table id='bestseller'>");
-		Iterator itr1 = mostsoldzip.iterator();
-         while(itr1.hasNext()) {
-         Mostsoldzip mostzip = (Mostsoldzip)itr1.next();
- 		pw.print("<tr>");
-		pw.println("<td border: 1px >");
+		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
+		// pw.print("<a style='font-size: 24px;'>Most Sold Products by On Time</a>");
+		// pw.print("</h2><div class='entry'><table id='bestseller'>");
+		// Iterator itr1 = mostsoldzip.iterator();
+        //  while(itr1.hasNext()) {
+        //  Mostsoldzip mostzip = (Mostsoldzip)itr1.next();
+ 		// pw.print("<tr>");
+		// pw.println("<td border: 1px >");
 		
-		pw.println(mostzip.getZipcode());
-		pw.println("</td>");
-		pw.println("<td border: 1px >");
-		pw.println(mostzip.getCount());
-		pw.println("</td>");
-		pw.println("</tr>");
-        }
-		pw.print("</table></div></div></div>");	
+		// pw.println(mostzip.getZipcode());
+		// pw.println("</td>");
+		// pw.println("<td border: 1px >");
+		// pw.println(mostzip.getCount());
+		// pw.println("</td>");
+		// pw.println("</tr>");
+        // }
+		// pw.print("</table></div></div></div>");	
 		
 		pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		pw.print("<a style='font-size: 24px;'>Most Sold Products</a>");
+		pw.print("<a style='font-size: 24px;'>Most Reviewed Bus Routes or Train Lines</a>");
 		pw.print("</h2><div class='entry'><table id='bestseller'>");
 		
          Iterator itr = mostsold.iterator();

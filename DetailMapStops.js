@@ -19,12 +19,12 @@ function callPostForArrivalData() {
       console.log("success ajax call;",msg);
       var dataArray = $.parseJSON(msg)['arrDueTrains'];
       var locations = [];
-      console.log('length'+ dataArray.length)
+      console.log('lengarrivalth'+ dataArray.length)
       for(i=0; i < dataArray.length;i++)
       {
         var lat = dataArray[i]["lat"];
         var long = dataArray[i]["lon"];
-        var some = (dataArray[i]["staNm"]);
+        var some = (dataArray[i]["destNm"]);
         console.log('lat ' + lat + 'long ' + long + 'station name ' + some)
         locations.push([some, lat, long, i+1]);
         // locations.push([dataArray[i]["stop_name"], dataArray[i]["location"]["coordinates"][1], dataArray[i]["location"]["coordinates"][0], i+1]);
