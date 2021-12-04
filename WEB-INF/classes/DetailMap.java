@@ -65,7 +65,7 @@ public class DetailMap extends HttpServlet {
             // System.out.println(obj1.getstopId());
             // System.out.println(obj1.getbusRouteDirection());
             // System.out.println(obj1.getrouteNumber());
-            if(arrCTABusTemp.indexOf(obj1) == 0) pw.print("<option value="+ obj1.getstopId() +"selected>"+obj1.getstopName()+"</option>");
+            if(arrCTABusTemp.indexOf(obj1) == 0) pw.print("<option value="+ obj1.getstopId() +">"+obj1.getstopName()+"</option>");
             else pw.print("<option value="+ obj1.getstopId() +">"+obj1.getstopName()+"</option>");
             
             // pw.print("<option value="+ obj1.getstopId() +"selected>"+obj1.getstopName()+"</option>"+ "<input type='hidden' name='dir' value="+obj1.getbusRouteDirection()+">");

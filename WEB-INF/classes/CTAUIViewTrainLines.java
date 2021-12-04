@@ -190,7 +190,7 @@ public class CTAUIViewTrainLines extends HttpServlet {
 
 				
 						pw.print("<li><form method='get' action='CTAUIViewTrainArrivalOnMap'>" +
-						"<input type='hidden' name='indexInArray' value='"+String.valueOf(i)+"'>"+
+						"<input type='hidden' name='indexInArray' value='"+String.valueOf(i-1)+"'>"+
 						"<input type='hidden' name='name' value='"+RouteName+"'>"+
 								"<input type='submit' class='btnbuy' value='Arrival Info'></form></li>");
 				

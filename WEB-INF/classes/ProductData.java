@@ -30,14 +30,21 @@ response.setContentType("text/html");
 			Product data= (Product)request.getAttribute("data");
 			pw.print("<h3>"+data.getName()+"</h3>");
 			pw.print("<strong>$"+data.getPrice()+"</strong><ul>");
-			pw.print("<li id='item'><img src='images/"+data.getType()+"/"+data.getImage()+"' alt='' /></li>");
+			pw.print("<li id='item'><img src='images/consoles/consoles.png' alt='' /></li>");
 			pw.print("<li><form method='post' action='Cart'>" +
 					"<input type='hidden' name='name' value='"+data.getId()+"'>"+
 					"<input type='hidden' name='type' value='"+data.getType()+"'>"+
 					"<input type='hidden' name='maker' value='"+data.getRetailer()+"'>"+
 					"<input type='hidden' name='price' value='"+data.getPrice()+"'>"+
 					"<input type='hidden' name='access' value=''>"+
-					"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
+					"<input type='submit' class='btnbuy' value='Buy Ticket'></form></li>");
+					pw.print("<li><form method='post' action='WriteReview'>"+
+			"<input type='hidden' name='name' value='"+data.getId()+"'>"+
+					"<input type='hidden' name='type' value='"+data.getType()+"'>"+
+					"<input type='hidden' name='maker' value='"+data.getRetailer()+"'>"+
+					"<input type='hidden' name='price' value='"+data.getPrice()+"'>"+
+					"<input type='hidden' name='access' value=''>"+
+				    	"<input type='submit' value='Show Routes' class='btnreview'></form></li>");
 			pw.print("<li><form method='post' action='WriteReview'>"+
 			"<input type='hidden' name='name' value='"+data.getId()+"'>"+
 					"<input type='hidden' name='type' value='"+data.getType()+"'>"+

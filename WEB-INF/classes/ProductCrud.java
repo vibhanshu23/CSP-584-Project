@@ -105,7 +105,7 @@ public class ProductCrud extends HttpServlet {
 				  System.out.println(" msg.equals"+productName);
 				  try
 				  {
-					  msg = MySqlDataStoreUtilities.addRoute(productId,productName);
+					  msg = MongoDBDataStoreUtilities.addRoute(productId,productName);
 				  }
 				  catch(Exception e)
 				  { 
@@ -122,7 +122,7 @@ public class ProductCrud extends HttpServlet {
 			  {  
 				  try
 				  {
-					  msg = MySqlDataStoreUtilities.addStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
+					  msg = MongoDBDataStoreUtilities.addStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
 				  }
 				  catch(Exception e)
 				  { 
@@ -164,7 +164,7 @@ public class ProductCrud extends HttpServlet {
 				
 				  try
 				  {
-					msg = MySqlDataStoreUtilities.updateRoute(productId,productName);
+					msg = MongoDBDataStoreUtilities.updateRoute(productId,productName);
 				  }
 				  catch(Exception e)
 				  { 
@@ -181,7 +181,7 @@ public class ProductCrud extends HttpServlet {
 				
 				  try
 				  {
-					msg = MySqlDataStoreUtilities.updateStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
+					msg = MongoDBDataStoreUtilities.updateStop(productId,productName,busRouteDirection,stopId,stopName,stoplat,stoplon);
 				  }
 				  catch(Exception e)
 				  { 
@@ -221,7 +221,7 @@ public class ProductCrud extends HttpServlet {
 					  try
 					  {  
 						
-						 msg = MySqlDataStoreUtilities.deleteRoute(productId);
+						 msg = MongoDBDataStoreUtilities.deleteRoute(productId);
 					  }
 					  catch(Exception e)
 					  { 
@@ -241,7 +241,7 @@ public class ProductCrud extends HttpServlet {
 					  try
 					  {  
 						
-						 msg = MySqlDataStoreUtilities.deleteStop(productId);
+						 msg = MongoDBDataStoreUtilities.deleteStop(productId);
 					  }
 					  catch(Exception e)
 					  { 
